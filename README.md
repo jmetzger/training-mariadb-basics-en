@@ -16,6 +16,7 @@
      * Optimal use of MySQL-Datatypes 
      * [Do not use '*' whenever possible](/performance/select-no-star-please.md) 
      * Query Plans 
+     * [Be aware of subselects - Example 1](/performance/subselects-1.md)
      * SELECT- and JOIN-TYPES 
      * Redesign Performance-Ctritical Statements 
      * Optimizer-Hints (and why you should not use them) 
