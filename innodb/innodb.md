@@ -1,10 +1,5 @@
 # InnoDB 
 
-## InnoDB Structure 
-
-![InnoDB Structure](/images/InnoDB-Structure.jpg)
-
-
 ## Innodb buffer pool
 
   * How much data fits into memory 
