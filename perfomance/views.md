@@ -1,15 +1,15 @@
 # Views and performance 
 
 ## General  
-
-  * SHOW CREATE VIEW
-  * Views can use 3 algorithms:
-    * merge 
-      * simple rewrites (translates the query)  
-    * temptable 
-      * Creates a temptable to retrieve information
-      * **In this case no indexes can be used** 
-      * Shows up explain with <derived>: ```
+   * SHOW CREATE VIEW
+   * Views can use 3 algorithms:
+     * merge 
+     * simple rewrites (translates the query)  
+   * temptable 
+     * Creates a temptable to retrieve information
+     * In this case no indexes can be used 
+     * Shows up explain with <derived>: 
+```
 +----+-------------+------------+------+---------------+------+---------+------+------+-------+
 | id | select_type | table      | type | possible_keys | key  | key_len | ref  | rows | Extra |
 +----+-------------+------------+------+---------------+------+---------+------+------+-------+
