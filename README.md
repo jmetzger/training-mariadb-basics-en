@@ -30,4 +30,15 @@
 keine Funktionsbasierten Indizes möglich -> Achtung !
 Probleme mit views anhand von Beispielen 
 Prepared Statements ? 
+We need to have something with a subquery and compare the performance and also do a rewrite to select
+
+# I think it would be a brilliant idea, if we have real life example from e.g. sakila. 
+
+Es erscheint mir erst einmal wichtig zu sein, was ich wie testen will ? 
+Bevor wir uns für eine oder mehrere Datenbanken entscheiden. 
+
+
+
+
+
 ```
