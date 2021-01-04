@@ -8,23 +8,36 @@
      * [Query - Cache](/performance/query-cache.md)  
   
   1. Allgemeine Performance-Messung und Diagnose 
+     * Konkrete Beispiele aus der Praxis, um Performance-Probleme einzugrenzen 
+     * Indentifizierung von langsamen und suboptimalen Queries 
+     
    
   1. Performance und Optimierung von SQL-Statements 
+     * Optimal use of MySQL-Datatypes 
      * [Do not use '*' whenever possible](/performance/select-no-star-please.md) 
-  
+     * Query Plans 
+     * SELECT- and JOIN-TYPES 
+     * Redesign Performance-Ctritical Statements 
+     * Optimizer-Hints (and why you should not use them) 
+    
   1. Joins- Die verschiedenen Typen von Joins und der optimale Einsatz in Bezug auf Performance 
-  
+     * The different types of joins there optimal use concerning performance 
+     
   1. Locking 
+     * Practical examples how to work with locks 
+     * Identifying long running locks and how to avoid them 
   
   1. InnoDB - Storage Engine 
-  
      * [Wie ist die Storage - Engine aufgebaut](/innodb/innodb-structure.md) 
      * Welche entscheideneden Parameter sind wichtig und zielführend für die Performance 
     
-  1. Optimaler Einsatz von Indizes   
-  
+  1. Optimal use of indexes 
+     * Index-Types 
+     * Use indexes and complex scenarios correctly 
+     * Analyze optimal and suboptimal indexing 
+     * Index strategies for high performance 
+ 
   1. Replikation 
-  
      * Performance-Optimierung durch Replikation 
     
 ## Sammlung 
