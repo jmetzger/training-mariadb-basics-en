@@ -22,5 +22,5 @@
   
   1. Replikation 
   
-    * Performance-Optimierung durch Replikation 
+     * Performance-Optimierung durch Replikation 
     
