@@ -9,7 +9,7 @@
      * [Views and performance](/performance/views.md) 
   
   1. Diagnosis and measurement of performance 
-     * Konkrete Beispiele aus der Praxis, um Performance-Probleme einzugrenzen 
+     * Best practices to narrow down performance problems
      * Identify slow and not-optimal queries
      
   1. Performance und optimization of SQL statements 
