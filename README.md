@@ -18,14 +18,14 @@
      * Query Plans 
      * [Be aware of subselects - Example 1](/performance/subselects-1.md)
      * SELECT- and JOIN-TYPES 
-     * Redesign Performance-Ctritical Statements 
-     * Optimizer-Hints (and why you should not use them) 
+     * Redesign of performance-critical statements 
+     * Optimizer-hints (and why you should not use them) 
     
   1. Joins and performance
      * The different types of joins and their optimal use concerning performance 
      
   1. Locking 
-     * Practical examples how to work with locks 
+     * Practical examples: How to work with locks 
      * Identifying long running locks and how to avoid them 
   
   1. InnoDB - Storage Engine 
@@ -34,7 +34,7 @@
     
   1. Optimal use of indexes 
      * Index-Types 
-     * Use indexes and complex scenarios correctly 
+     * Use indexes for complex scenarios (correctly ;o)) 
      * Analyze optimal and suboptimal indexing 
      * Index strategies for high performance 
  
