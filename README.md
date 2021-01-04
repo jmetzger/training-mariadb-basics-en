@@ -44,3 +44,5 @@ Bevor wir uns für eine oder mehrere Datenbanken entscheiden.
 
 
 ```
+* https://use-the-index-luke.com/de/sql/where/bereiche/like-filter (wie wirkt sich like auf den Index aus)
+```
