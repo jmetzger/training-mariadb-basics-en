@@ -17,17 +17,18 @@
 |  2 | DERIVED     | task       | ALL  | NULL          | NULL | NULL    | NULL |   33 | NULL  |
 +----+-------------+------------+------+---------------+------+---------+------+------+-------+
 ```
-    * undefined 
-      * MySQL chooses, if to use merge or temptable 
-      * prefers merge over temptable if possible  
+   * undefined 
+     * MySQL chooses, if to use merge or temptable 
+     * prefers merge over temptable if possible  
 
     
 
 ## Handling (best practice)
 
-  * You can define the algorithm when creating the view 
-  * If you define merge and mysql cannot handle it
-    * you will get a warning ```
+   * You can define the algorithm when creating the view 
+   * If you define merge and mysql cannot handle it
+     * you will get a warning 
+```
 mysql> CREATE ALGORITHM=MERGE VIEW priority_counts AS SELECT priority_id, COUNT(1) AS quanity FROM task GROUP BY priority_id;
 Query OK, 0 rows affected, 1 warning (0.12 sec)
 
@@ -38,6 +39,6 @@ mysql> SHOW WARNINGS;
 | Warning | 1354 | View merge algorithm can't be used here for now (assumed undefined algorithm) |
 +---------+------+-------------------------------------------------------------------------------+
 1 row in set (0.08 sec)
-
-  * Ref: https://dba.stackexchange.com/questions/54481/determining-what-algorithm-mysql-view-is-using
+```
+   * Ref: https://dba.stackexchange.com/questions/54481/determining-what-algorithm-mysql-view-is-using
  
