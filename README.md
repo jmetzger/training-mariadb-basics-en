@@ -4,6 +4,9 @@
 
   1. Performance-relevante Aspekte der MySQL-Architektur 
   
+     * Architecture Server (Steps)
+     * Query - Cache 
+  
   1. Allgemeine Performance-Messung und Diagnose 
    
   1. Performance und Optimierung von SQL-Statements 
@@ -14,8 +17,7 @@
   
   1. InnoDB - Storage Engine 
   
-     * Wie ist die Storage - Engine aufgebaut 
-    
+     * [Wie ist die Storage - Engine aufgebaut](innodb/innodb.md) 
      * Welche entscheideneden Parameter sind wichtig und zielführend für die Performance 
     
   1. Optimaler Einsatz von Indizes   
