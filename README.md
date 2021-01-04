@@ -10,7 +10,7 @@
   
   1. Diagnosis and measurement of performance 
      * Konkrete Beispiele aus der Praxis, um Performance-Probleme einzugrenzen 
-     * Indentifizierung von langsamen und suboptimalen Queries 
+     * Identify slow and not-optimal queries
      
   1. Performance und optimization of SQL statements 
      * Optimal use of MySQL datatypes 
