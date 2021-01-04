@@ -2,18 +2,18 @@
 
 ## Agenda 
 
-  1. Performance-relevante Aspekte der MySQL-Architektur 
+  1. Performance related aspects of the MySQL architecture  
   
      * [Architecture Server (Steps)](/performance/mysql-server-architecture.md)
-     * [Query - Cache](/performance/query-cache.md)  
+     * [Query - Cache](/performance/query-cache.md)
+     * [Views and performance](/performance/views.md) 
   
-  1. Allgemeine Performance-Messung und Diagnose 
+  1. Diagnosis and measurement of performance 
      * Konkrete Beispiele aus der Praxis, um Performance-Probleme einzugrenzen 
      * Indentifizierung von langsamen und suboptimalen Queries 
      
-   
-  1. Performance und Optimierung von SQL-Statements 
-     * Optimal use of MySQL-Datatypes 
+  1. Performance und optimization of SQL statements 
+     * Optimal use of MySQL datatypes 
      * [Do not use '*' whenever possible](/performance/select-no-star-please.md) 
      * Query Plans 
      * [Be aware of subselects - Example 1](/performance/subselects-1.md)
@@ -21,15 +21,15 @@
      * Redesign Performance-Ctritical Statements 
      * Optimizer-Hints (and why you should not use them) 
     
-  1. Joins- Die verschiedenen Typen von Joins und der optimale Einsatz in Bezug auf Performance 
-     * The different types of joins there optimal use concerning performance 
+  1. Joins and performance
+     * The different types of joins and their optimal use concerning performance 
      
   1. Locking 
      * Practical examples how to work with locks 
      * Identifying long running locks and how to avoid them 
   
   1. InnoDB - Storage Engine 
-     * [Wie ist die Storage - Engine aufgebaut](/innodb/innodb-structure.md) 
+     * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
      * Welche entscheideneden Parameter sind wichtig und zielführend für die Performance 
     
   1. Optimal use of indexes 
@@ -38,8 +38,8 @@
      * Analyze optimal and suboptimal indexing 
      * Index strategies for high performance 
  
-  1. Replikation 
-     * Performance-Optimierung durch Replikation 
+  1. Replication 
+     * Performance optimization through replication 
     
 ## Sammlung 
 
