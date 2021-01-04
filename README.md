@@ -10,6 +10,7 @@
   1. Allgemeine Performance-Messung und Diagnose 
    
   1. Performance und Optimierung von SQL-Statements 
+     * Do not use '*' whenever possible 
   
   1. Joins- Die verschiedenen Typen von Joins und der optimale Einsatz in Bezug auf Performance 
   
