@@ -61,3 +61,9 @@ Bevor wir uns für eine oder mehrere Datenbanken entscheiden.
   * ```
 Es ist die wahrscheinlich häufigste Frage zur Indizierung überhaupt: Ist es besser, einen Index pro Spalte anzulegen oder einen Index über alle Spalten einer where-Klausel? In den meisten Fällen ist die Antwort sehr einfach: Ein Index über mehrere Spalten ist besser.„Zusammengesetzte Schlüssel“ erklärt mehrspaltige Indizes im Detail.
 ```
+## Myths 
+
+### Most selective field first in compound index
+
+  * This is simply one 
+  * You have to design the compound like so, that the most used combination of fields is used.
