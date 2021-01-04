@@ -24,3 +24,9 @@
   
      * Performance-Optimierung durch Replikation 
     
+## Sammlung 
+
+```
+keine Funktionsbasierten Indizes möglich -> Achtung !
+Probleme mit views anhand von Beispielen 
+```
