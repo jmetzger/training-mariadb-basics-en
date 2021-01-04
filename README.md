@@ -5,7 +5,7 @@
   1. Performance-relevante Aspekte der MySQL-Architektur 
   
      * Architecture Server (Steps)
-     * Query - Cache 
+     * [Query - Cache](/performance/query-cache.md)  
   
   1. Allgemeine Performance-Messung und Diagnose 
    
