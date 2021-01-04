@@ -30,7 +30,7 @@
   
   1. InnoDB - Storage Engine 
      * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
-     * Welche entscheideneden Parameter sind wichtig und zielführend für die Performance 
+     * Important InnoDB - configuration - options to optimized performance
     
   1. Optimal use of indexes 
      * Index-Types 
