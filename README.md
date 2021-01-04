@@ -43,6 +43,6 @@ Bevor wir uns für eine oder mehrere Datenbanken entscheiden.
 
 * Indizes über mehrere Spalten (ja/nein ?) : 
   * https://use-the-index-luke.com/de/sql/where/bereiche/index-merge
-```
+  * ```
 Es ist die wahrscheinlich häufigste Frage zur Indizierung überhaupt: Ist es besser, einen Index pro Spalte anzulegen oder einen Index über alle Spalten einer where-Klausel? In den meisten Fällen ist die Antwort sehr einfach: Ein Index über mehrere Spalten ist besser.„Zusammengesetzte Schlüssel“ erklärt mehrspaltige Indizes im Detail.
 ```
