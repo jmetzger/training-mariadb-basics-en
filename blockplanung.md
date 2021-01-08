@@ -4,7 +4,7 @@
 
 | Block.   | Themen   | Bemerkung |
 | -------- | -------- | -------- |
-| Block 1 <br/>(9.00 - 10.30)<br/><br/><br/><br/><br/><br/>  | **Vorstellungsrunde**<br/><br/>o Wie ist es Euch ergangen ?)<br/>o Welche Fragen sind aufgetaucht ?<br/>o Wer ist neu und hat welche Ziele?<br/><br/> **Überblick InnoDB / Architektur**  <br/><br/> **Optimierung InnoDB-Konfiguration (performance)| -- |
+| Block 1 <br/>(9.00 - 10.30)<br/><br/><br/><br/><br/><br/>  | **Vorstellungsrunde**<br/><br/>o Wie ist es Euch ergangen ?)<br/>o Welche Fragen sind aufgetaucht ?<br/>o Wer ist neu und hat welche Ziele?<br/><br/> **Überblick InnoDB / Architektur**  <br/><br/> **Optimierung InnoDB-Konfiguration (performance)** | -- |
 | Frühstück <br/>(10.30 - 10.45) | Frühstückspause | -- | 
 | Block 2 <br/>(10.45 - 12:15) | -- |
 | Mittagspause <br/>(12:15 - 13:00) | Mittagspause | -- |
