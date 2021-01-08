@@ -42,4 +42,4 @@
   * Replikation mit GTID :: https://www.admin-magazin.de/Das-Heft/2017/02/MySQL-Replikation-mit-GTIDs
   * Replikation Read/Write - Split: https://proxysql.com/blog/configure-read-write-split/
   * virtual columns/fields for Indexing upper 
-
+  * Fulltext indexing (InnoDB) 
