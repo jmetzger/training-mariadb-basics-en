@@ -7,8 +7,6 @@ description: Diese Seite zeigt Ihnen, wie Sie mit 'GitHub Flavored Markdown' (ku
 
 ## Tag 1 (13.1.21) 
 
-Block.   | Themen   | Bemerkung 
--------- | -------- | --------
-Inhalt   | Inhalt   | Something
-comes around 
-Inhalt   | Inhalt   | Inhalt
+| Block.   | Themen   | Bemerkung |
+| -------- | -------- | -------- |
+| Block 1  | Inhalt   | Something |
