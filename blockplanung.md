@@ -16,13 +16,13 @@
 
 | Block.   | Themen   | Bemerkung |
 | -------- | -------- | -------- |
-| Block 1 <br/>(9.00 - 10.30)  | Vorstellungsrunde<br/>(+ wie ist es Euch ergangen ?)<br/>Wer ist neu und Ziele?   | -- |
+| Block 1 <br/>(9.00 - 10.30)  | -- | -- |
 | Frühstück <br/>(10.30 - 10.45) | Frühstückspause | -- | 
 | Block 2 <br/>(10.45 - 12:15) | -- |
 | Mittagspause <br/>(12:15 - 13:00) | Mittagspause | -- |
-| Block 3 <br/>(13:00 - 14:30) | Topic 1 | -- | 
+| Block 3 <br/>(13:00 - 14:30) | -- | -- | 
 | Teatime <br/>(14:30 - 14:45) | Nachmittagspause | -- |
-| Block 4 <br/>(14:45 - 16:15) | Tipic 1 | -- | 
+| Block 4 <br/>(14:45 - 16:15) | -- | -- | 
 
 ## Tag 3 (Freitag) 
 
