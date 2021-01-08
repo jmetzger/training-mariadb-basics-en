@@ -12,7 +12,7 @@
      * Best practices to narrow down performance problems
      * Identify slow and not-optimal queries
      
-  1. Performance und optimization of SQL statements 
+  1. Performance and optimization of SQL statements 
      * Optimal use of MySQL datatypes 
      * [Do not use '*' whenever possible](/performance/select-no-star-please.md) 
      * Query Plans 
@@ -40,6 +40,9 @@
  
   1. Replication 
      * Performance optimization through replication 
+     
+  1. Performance - Recap 
+     * [Best Practices](/performance/best-practices.md)
     
 ## Sammlung 
 
