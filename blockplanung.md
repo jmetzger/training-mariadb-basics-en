@@ -6,7 +6,7 @@
 | -------- | -------- | -------- |
 | Block 1 <br/>(9.00 - 10.30)<br/><br/><br/><br/><br/><br/>  | **Vorstellungsrunde**<br/><br/>o Wie ist es Euch ergangen ?)<br/>o Welche Fragen sind aufgetaucht ?<br/>o Wer ist neu und hat welche Ziele?<br/><br/> **Überblick InnoDB / Architektur**  <br/><br/> **Optimierung InnoDB-Konfiguration (performance)**<br/><br/>o innodb_buffer_pool_size finden, berechnen und setzen<br/>o TODO: Hier noch die weiteren Möglichkeiten<br/>| -- |
 | Frühstück <br/>(10.30 - 10.45) | Frühstückspause | -- | 
-| Block 2 <br/>(10.45 - 12:15) | **pt_query_digest** <br /><br />o slow query log aktivieren <br/>o Installieren des percona toolkit <br />o Auswerten des slow_query_logs |
+| Block 2 <br/>(10.45 - 12:15) | **pt_query_digest** <br /><br />o slow query log aktivieren <br/>o Installieren des percona toolkit <br />o Auswerten des slow_query_logs<br /><br />**Index - Typen**|
 | Mittagspause <br/>(12:15 - 13:00) | Mittagspause | -- |
 | Block 3 <br/>(13:00 - 14:30) | -- | -- | 
 | Teatime <br/>(14:30 - 14:45) | Nachmittagspause | -- |
