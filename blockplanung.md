@@ -28,7 +28,7 @@
 
 | Block.   | Themen   | Bemerkung |
 | -------- | -------- | -------- |
-| Block 1 <br/>(9.00 - 10.30)  | **Replikation**<br/>o Replikation aufsetzen <br/> Umkonfigurieren auf GTID <br/> Load Balancer mit Read-Write-Split davorsetzen  | -- |
+| Block 1 <br/>(9.00 - 10.30)  | **Replikation**<br/><br/>o Replikation aufsetzen <br/>o Umkonfigurieren auf GTID <br/>o Load Balancer mit Read-Write-Split davorsetzen  | -- |
 | Frühstück <br/>(10.30 - 10.45) | Frühstückspause | -- | 
 | Block 2 <br/>(10.45 - 12:15) | -- |
 | Mittagspause <br/>(12:15 - 13:00) | Mittagspause | -- |
