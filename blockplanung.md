@@ -34,7 +34,7 @@
 | Mittagspause <br/>(12:15 - 13:00) | Mittagessen | -- |
 | Block 3 <br/>(13:00 - 14:30) | **Locking** <br />o Table Locks <br/> Locking in InnoDB <br/> explizite/implizite Locks <br/> o Deadlocks aufspürren (Tesstellung) <br /> o Theorie: Wie können Deadlocks entstehen (Theorie) <br/> o Lösungsstrategie bei vielen auftretenden Deadlocks | -- | 
 | Teatime <br/>(14:30 - 14:45) | Nachmittagspause | -- |
-| Block 4 <br/>(14:45 - 16:15) | -- | ab 16 Uhr / Abschluss / Feedbackbögen | 
+| Block 4 <br/>(14:45 - 16:15) | Best Practices | ab 16 Uhr / Abschluss / Feedbackbögen | 
 
 ## Sammler 
 
