@@ -4,7 +4,7 @@
 
 | Block.   | Themen   | Bemerkung |
 | -------- | -------- | -------- |
-| Block 1 <br/>(9.00 - 10.30)  | Vorstellungsrunde<br/>(+ wie ist es Euch ergangen ?)<br/>Wer ist neu und Ziele? <br/> Überblick InnoDB / Architektur  | -- |
+| Block 1 <br/>(9.00 - 10.30)  | Vorstellungsrunde<br/>(+ wie ist es Euch ergangen ?)<br/>Wer ist neu und Ziele? <br/> *Überblick InnoDB / Architektur*  | -- |
 | Frühstück <br/>(10.30 - 10.45) | Frühstückspause | -- | 
 | Block 2 <br/>(10.45 - 12:15) | -- |
 | Mittagspause <br/>(12:15 - 13:00) | Mittagspause | -- |
