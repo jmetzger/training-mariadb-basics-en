@@ -37,7 +37,7 @@
      * Use indexes for complex scenarios (correctly ;o)) 
      * Analyze optimal and suboptimal indexing 
      * Index strategies for high performance 
- 
+     * [Index and Functions (Cool new feature in MySQL 5.7)](index-and-functions.md) 
   1. Replication 
      * Performance optimization through replication 
      
