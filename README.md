@@ -35,7 +35,7 @@
   1. Optimal use of indexes
      * Index-Types 
        * [Describe and indexes](/indexes/describe-table.md)
-       * [Find out indexes]((indexes/findout-indexes.md) 
+       * [Find out indexes](indexes/findout-indexes.md) 
      * Use indexes for complex scenarios (correctly ;o)) 
      * Analyze optimal and suboptimal indexing 
      * Index strategies for high performance 
