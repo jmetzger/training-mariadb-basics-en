@@ -57,6 +57,8 @@ desc people;
 # Add a unique index on passcode 
 create index idx_passcode on people (passcode) 
 mysql> desc people;
+
+-- Line with UNI shows this indexes. 
 +------------+-----------------------+------+-----+---------+----------------+
 | Field      | Type                  | Null | Key | Default | Extra          |
 +------------+-----------------------+------+-----+---------+----------------+
@@ -68,4 +70,20 @@ mysql> desc people;
 4 rows in set (0.01 sec)
 ```
 
+
+### Step 4: 
+
+```
+# Get to know all your indexes on a table 
+show indexes for people 
+mysql> show index from people;
++--------+------------+--------------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table  | Non_unique | Key_name                 | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++--------+------------+--------------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| people |          0 | PRIMARY                  |            1 | id          | A         |           0 |     NULL | NULL   |      | BTREE      |         |               |
+| people |          0 | idx_passcode             |            1 | passcode    | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
+| people |          1 | idx_first_name_last_name |            1 | first_name  | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
+| people |          1 | idx_first_name_last_name |            2 | last_name   | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
++--------+------------+--------------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+4 rows in set (0.01 sec)
 
