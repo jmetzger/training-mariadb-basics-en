@@ -36,7 +36,7 @@ Query OK, 0 rows affected (0.05 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 desc people;
 
--- show the column where th index starts (MUL = Multi) 
+-- show the column where the combined index starts (MUL = Multi) 
 
 +------------+-----------------------+------+-----+---------+----------------+
 | Field      | Type                  | Null | Key | Default | Extra          |
@@ -50,4 +50,22 @@ desc people;
 
 
 ```
+
+### Step 3:
+
+```
+# Add a unique index on passcode 
+create index idx_passcode on people (passcode) 
+mysql> desc people;
++------------+-----------------------+------+-----+---------+----------------+
+| Field      | Type                  | Null | Key | Default | Extra          |
++------------+-----------------------+------+-----+---------+----------------+
+| id         | int(10) unsigned      | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(25)           | YES  | MUL | NULL    |                |
+| last_name  | varchar(25)           | YES  |     | NULL    |                |
+| passcode   | mediumint(8) unsigned | YES  | UNI | NULL    |                |
++------------+-----------------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+```
+
 
