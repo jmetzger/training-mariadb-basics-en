@@ -37,11 +37,12 @@ Records: 0  Duplicates: 0  Warnings: 0
 desc people;
 
 -- show the column where th index starts (MUL = Multi) 
+
 +------------+-----------------------+------+-----+---------+----------------+
 | Field      | Type                  | Null | Key | Default | Extra          |
 +------------+-----------------------+------+-----+---------+----------------+
 | id         | int(10) unsigned      | NO   | PRI | NULL    | auto_increment |
-| first_name | varchar(25)           | YES  |     | NULL    |                |
+| first_name | varchar(25)           | YES  | MUL | NULL    |                |
 | last_name  | varchar(25)           | YES  |     | NULL    |                |
 | passcode   | mediumint(8) unsigned | YES  |     | NULL    |                |
 +------------+-----------------------+------+-----+---------+----------------+
