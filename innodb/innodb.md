@@ -38,6 +38,15 @@ mysql>show variables like 'innodb%buffer%';
 Ideally O_DIRECT on Linux, but please test it, if it really works well. 
 ```
 
+## 	innodb_flush_log_at_trx_commit
+
+```
+When is fliushing done from innodb_log_buffer to log.
+Default: 1 : After every commit 
+-> best performance 2. -> once per second
+
+# Good to use 2, if you are willing to loose 1 second of data on powerfail 
+```
 
 
 ## Ref:
