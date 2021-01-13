@@ -6,6 +6,7 @@
 
 ```bash 
 cd /usr/src 
+apt update; apt install git 
 git clone https://github.com/jmetzger/dedupe-examples.git
 cd dedupe-examples 
 cd mysql_example 
