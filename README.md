@@ -48,6 +48,7 @@
      
   1. Performance - Recap 
      * [Best Practices](/performance/best-practices.md)
+     * [Example sys-schema](https://github.com/mysql/mysql-sys/blob/master/README.md)
      
   1. Documentation / Literature 
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
