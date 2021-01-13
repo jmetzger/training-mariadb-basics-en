@@ -48,6 +48,26 @@ Default: 1 : After every commit
 # Good to use 2, if you are willing to loose 1 second of data on powerfail 
 ```
 
+## innodb_flush_neighbors 
+
+```
+# on ssd disks set this to off, because there is no performance improvement 
+innodb_flush_neighbors=0 
+
+# Default = 1 
+
+```
+
+## skip-name-resolv.conf 
+
+```
+# work only with ip's - better for performance 
+/etc/my.cnf 
+skip-name-resolve
+```
+
+  * https://nixcp.com/skip-name-resolve/
+
 
 ## Ref:
 
