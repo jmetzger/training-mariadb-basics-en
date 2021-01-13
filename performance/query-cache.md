@@ -2,7 +2,7 @@
 
 ## Defaults 
 
-  * mysql 5.7, query_cache is still compile into mysq, but disabled
+  * mysql 5.7, query_cache is still compile into mysql, but disabled
   * mysql 8, query cache not available anymore 
   
 ## Performance query cache 
