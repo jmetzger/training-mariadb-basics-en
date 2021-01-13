@@ -43,6 +43,8 @@
      * [Index and Functions (Cool new feature in MySQL 5.7)](index-and-functions.md) 
   1. Replication 
      * Performance optimization through replication 
+     * Replikation mit GTID :: https://www.admin-magazin.de/Das-Heft/2017/02/MySQL-Replikation-mit-GTIDs
+     * Replikation Read/Write - Split: https://proxysql.com/blog/configure-read-write-split/
      
   1. Performance - Recap 
      * [Best Practices](/performance/best-practices.md)
