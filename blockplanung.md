@@ -36,10 +36,3 @@
 | Teatime <br/>(14:30 - 14:45) | Nachmittagspause | -- |
 | Block 4 <br/>(14:45 - 16:15) | Best Practices | ab 16 Uhr / Abschluss / Feedbackbögen | 
 
-## Sammler 
-
-  * Die sys-Datenbank 
-  * Replikation mit GTID :: https://www.admin-magazin.de/Das-Heft/2017/02/MySQL-Replikation-mit-GTIDs
-  * Replikation Read/Write - Split: https://proxysql.com/blog/configure-read-write-split/
-  * virtual columns/fields for Indexing upper 
-  * Fulltext indexing (InnoDB) 
