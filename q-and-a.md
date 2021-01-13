@@ -12,3 +12,7 @@ and reverting back even more.
 ```
 
    * Refer to: https://ahmedahamid.com/aurora-mysql/
+
+I would like to point you to a performance measurement report here:
+
+   * https://galeracluster.com/2019/09/everdata-reports-galera-cluster-outshines-amazon-aurora-and-rds/
