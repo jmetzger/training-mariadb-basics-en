@@ -33,7 +33,7 @@
      * Important InnoDB - configuration - options to optimized performance
     
   1. Optimal use of indexes
-     * [Setup training data "contributions"](setup-training-data-contributions.md)
+     * [Setup training data "contributions"](/indexes/setup-training-data-contributions.md)
      * Index-Types 
        * [Describe and indexes](/indexes/describe-table.md)
        * [Find out indexes](indexes/findout-indexes.md) 
