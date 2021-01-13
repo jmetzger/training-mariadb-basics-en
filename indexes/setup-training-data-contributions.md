@@ -5,8 +5,6 @@
   * Complete process takes about 10 minutes 
 
 ```bash 
-apt update 
-apt install git 
 cd /usr/src 
 git clone https://github.com/jmetzger/dedupe-examples.git
 cd dedupe-examples 
