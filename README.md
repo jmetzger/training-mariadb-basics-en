@@ -49,6 +49,7 @@
   1. Performance - Recap 
      * [Best Practices](/performance/best-practices.md)
      * [Example sys-schema and Reference](/tools/sys.md)
+     * [Change schema online (pt-online-schema-change)](https://www.percona.com/doc/percona-toolkit/3.0/pt-online-schema-change.html)
      
   1. Documentation / Literature 
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
