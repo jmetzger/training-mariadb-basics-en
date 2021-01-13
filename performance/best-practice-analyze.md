@@ -9,12 +9,11 @@
 ```
 # Are there slow queries ? 
 # look for time 
-show processlist 
+show full processlist 
 
+## or time - in seconds  
+select * from information_schema.processlist where time > 10;
+```
 
-
-
-
-## Refs: 
 
 
