@@ -32,6 +32,14 @@ mysql
 mysql>show variables like 'innodb%buffer%';
 ```
 
+## innodb_flush_method 
+
+```
+Ideally O_DIRECT on Linux, but please test it, if it really works well. 
+```
+
+
+
 ## Ref:
 
   * https://dev.mysql.com/doc/refman/5.7/en/innodb-buffer-pool-resize.html
