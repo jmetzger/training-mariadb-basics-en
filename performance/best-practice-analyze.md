@@ -4,7 +4,7 @@
 
   * System is slow 
 
-## Analyze - Checklist 
+## Analyze - Checklist  - Step 1
 
 ```
 # Are there slow queries ? 
@@ -15,5 +15,13 @@ show full processlist
 select * from information_schema.processlist where time > 10;
 ```
 
-
+## Re-Execute SELECT or where from UPDATE / DELETE 
+```
+# Is it still slow ? 
+# Eventually kill 
+mysql>show processlist 
+mysql>--kill <Thread-id> 
+mysql>-- example
+mysql>kill 44 
+```
 
