@@ -31,7 +31,7 @@
   
   1. InnoDB - Storage Engine 
      * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
-     * Important InnoDB - configuration - options to optimized performance
+     * [Important InnoDB - configuration - options to optimized performance](/innodb/innodb.md) 
     
   1. Optimal use of indexes
      * [Setup training data "contributions"](/indexes/setup-training-data-contributions.md)
