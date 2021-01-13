@@ -57,4 +57,6 @@
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
      * [Last Training](https://github.com/jmetzger/training-mysql-developers-basics)
      * [pdf](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
+     
+   1. [Questions and Answers](q-and-a.md)
     
