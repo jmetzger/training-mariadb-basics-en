@@ -60,5 +60,7 @@
      * [Last Training](https://github.com/jmetzger/training-mysql-developers-basics)
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
      
+   1. [Partitions and Explain](partitions/partitions-explain.md)    
+   
    1. [Questions and Answers](q-and-a.md)
     
