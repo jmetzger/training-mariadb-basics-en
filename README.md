@@ -46,7 +46,7 @@
      * [Percona-toolkit](/tools/percona-toolkit.md) 
      * [pt-query-digist - analyze slow logs](/tools/pt-query-digest.md) 
      * [pt-online-schema-change howto](/tools/pt-online-schema-change.md)
-     
+     * [profiling-get-time-for-execution-of.query](/indexes/profiling.md)      
   1. Replication 
      * Performance optimization through replication 
      * Replikation mit GTID :: https://www.admin-magazin.de/Das-Heft/2017/02/MySQL-Replikation-mit-GTIDs
