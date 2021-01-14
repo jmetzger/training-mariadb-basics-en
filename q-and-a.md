@@ -16,3 +16,10 @@ and reverting back even more.
 I would like to point you to a performance measurement report here:
 
    * https://galeracluster.com/2019/09/everdata-reports-galera-cluster-outshines-amazon-aurora-and-rds/
+
+## 2. Get rid of unattended - upgrades problem (dirty hack) 
+
+```
+ps aux | grep unatt
+kill <process-id-von-unattended-upgrades>
+```
