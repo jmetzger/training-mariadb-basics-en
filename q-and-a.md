@@ -30,3 +30,20 @@ kill <process-id-von-unattended-upgrades>
 
 https://www.percona.com/doc/percona-toolkit/LATEST/pt-archiver.html
 ```
+
+## 4. Does innodb do defragmentation by itself ?
+
+```
+# Some background while doing research.
+# Nil performance benefits of defragmentation in index.
+https://stackoverflow.com/questions/48569979/mariadb-table-defragmentation-using-optimize
+
+# mariadb has a patch for defragmentation  
+https://mariadb.org/defragmenting-unused-space-on-innodb-tablespace/
+
+# alter table xyz engine=InnoDB - defragements 
+# but is also invasive.
+# with ibdata1 innodb_file_per_table it lets the size grow
+
+
+```
