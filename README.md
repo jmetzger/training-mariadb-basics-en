@@ -67,3 +67,5 @@
    
    1. [Questions and Answers](q-and-a.md)
     
+   1. [mysql-do-nots](mysql-do-nots.md)
+   
