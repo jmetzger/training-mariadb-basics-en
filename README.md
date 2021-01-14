@@ -42,6 +42,8 @@
      * Analyze optimal and suboptimal indexing 
      * Index strategies for high performance 
      * [Index and Functions (Cool new feature in MySQL 5.7)](index-and-functions.md) 
+     * [Index and Likes](like-index-and-not-index.md)
+     
   1. Replication 
      * Performance optimization through replication 
      * Replikation mit GTID :: https://www.admin-magazin.de/Das-Heft/2017/02/MySQL-Replikation-mit-GTIDs
