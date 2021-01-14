@@ -16,7 +16,12 @@ explain select last_name from donors where last_name like '%iams';
 ```
 # Walkthrough 
 # Step 1: modify table 
-alter table donors add last_name_reversed varchar(70),add index idx_last_name_reversed (last_name_reversed);
+alter table donors add last_name_reversed varchar(70) GENERATED ALWAYS AS (reverse(last_name));
+create index idx_last_name_reversed on donors (last_name_reversed);
+
+# besser - Variante 2 - untested 
+alter table donors add last_name_reversed varchar(70) GENERATED ALWAYS AS (reverse(last_name)), add index idx_last_name_reversed on donors (last_name_reversed);
+
 # Step 2: update table - this take a while 
 update donors set last_name_reversed = reversed(last_name)
 # Step 3: work with it 
