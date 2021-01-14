@@ -44,6 +44,7 @@
      * [Index and Functions (Cool new feature in MySQL 5.7)](index-and-functions.md) 
      * [Index and Likes](/indexes/like-index-not-index.md)
      * [Percona-toolkit](/tools/percona-toolkit.md) 
+     * [pt-query-digist - analyze slow logs](/tools/pt-query-digest.md) 
      
   1. Replication 
      * Performance optimization through replication 
