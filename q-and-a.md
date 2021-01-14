@@ -23,3 +23,10 @@ I would like to point you to a performance measurement report here:
 ps aux | grep unatt
 kill <process-id-von-unattended-upgrades>
 ```
+
+## 3. Archive Data 
+
+```
+
+https://www.percona.com/doc/percona-toolkit/LATEST/pt-archiver.html
+```
