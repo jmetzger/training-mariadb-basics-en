@@ -51,3 +51,32 @@ EXPLAIN select * from contributions where vendor_last_name like 'W%';
 +----+-------------+---------------+------------+------+---------------+------+---------+------+---------+----------+-------------+
 1 row in set, 1 warning (0.00 sec)
 
+
+## Extra 
+
+### Using index - cover index is used 
+
+```
+Looking data in index is sufficient 
+- no lookup of data on disk is necessary 
+```
+
+```
+mysql> EXPLAIN select contribution_id  from contributions where contribution_id = 262611;
++----+-------------+---------------+------------+-------+---------------+---------+---------+-------+------+----------+-------------+
+| id | select_type | table         | partitions | type  | possible_keys | key     | key_len | ref   | rows | filtered | Extra       |
++----+-------------+---------------+------------+-------+---------------+---------+---------+-------+------+----------+-------------+
+|  1 | SIMPLE      | contributions | NULL       | const | PRIMARY       | PRIMARY | 4       | const |    1 |   100.00 | Using index |
++----+-------------+---------------+------------+-------+---------------+---------+---------+-------+------+----------+-------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> show warnings;
++-------+------+--------------------------------------------------------------------------------------------------+
+| Level | Code | Message                                                                                          |
++-------+------+--------------------------------------------------------------------------------------------------+
+| Note  | 1003 | /* select#1 */ select '262611' AS `contribution_id` from `contributions`.`contributions` where 1 |
++-------+------+--------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+
+
