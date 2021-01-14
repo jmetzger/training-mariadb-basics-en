@@ -45,6 +45,7 @@
      * [Index and Likes](/indexes/like-index-not-index.md)
      * [Percona-toolkit](/tools/percona-toolkit.md) 
      * [pt-query-digist - analyze slow logs](/tools/pt-query-digest.md) 
+     * [pt-online-schema-change howto](/tools/pt-online-schema-change.md)
      
   1. Replication 
      * Performance optimization through replication 
