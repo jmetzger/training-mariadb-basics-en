@@ -11,5 +11,6 @@ wget https://repo.percona.com/apt/percona-release_latest.focal_all.deb
 apt update 
 apt install -y curl 
 dpkg -i percona-release_latest.focal_all.deb
-
+apt update
+apt install -y percona-toolkit 
 ```
