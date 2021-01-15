@@ -20,7 +20,7 @@
      * [Be aware of subselects - Example 1](/performance/subselects-1.md)
      * SELECT- and JOIN-TYPES 
      * Redesign of performance-critical statements 
-     * Optimizer-hints (and why you should not use them) 
+     * [Optimizer-hints (and why you should not use them)](performance/optimizer-hints.md)
     
   1. Joins and performance
      * The different types of joins and their optimal use concerning performance 
