@@ -42,6 +42,10 @@ https://stackoverflow.com/questions/48569979/mariadb-table-defragmentation-using
 ## 5. Defragmentation 
 
 ```
+# Optimize table 
+ALTER TABLE contributions engine = InnoDB 
+
+
 # mariadb has a patch for defragmentation  
 https://mariadb.org/defragmenting-unused-space-on-innodb-tablespace/
 
