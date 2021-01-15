@@ -22,3 +22,9 @@ show index from people
 ```
 show create table peple 
 ```
+
+### show index from 
+
+```
+show index from contributions 
+```
