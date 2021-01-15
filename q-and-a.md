@@ -57,3 +57,9 @@ https://mariadb.org/defragmenting-unused-space-on-innodb-tablespace/
 ```
 No, this is not possible 
 ```
+
+## 7. Unit test framework in MySQL 
+
+```
+No, there is no testing framework with MySQL 
+```
