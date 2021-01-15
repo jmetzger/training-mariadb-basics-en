@@ -15,6 +15,13 @@ mysql> explain select * from recipients where recipient_id > 1 and recipient_id 
 1 row in set, 1 warning (0.01 sec)
 ```
 
+## Output-Format json 
+
+```
+-- includes costs 
+EXPLAIN format=json SELECT * from audit_log WHERE yr in (2011,2012);
+```
+
 ## Select_Type 
   
   * simple = one table 
