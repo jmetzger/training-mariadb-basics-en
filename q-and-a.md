@@ -83,4 +83,12 @@ No, there is no testing framework with MySQL
   set profiling (still available but deprecated )
   ```
   
-  
+## 9. Select without locking 
+
+  ``` 
+  SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED ;
+  BEGIN ;
+  SELECT * FROM TABLE_NAME ;
+  COMMIT ;
+  ```
+
