@@ -80,7 +80,7 @@ No, there is no testing framework with MySQL
   ```
   MysqL 8 does not:
   decode 
-  set profiling 
+  set profiling (still available but deprecated )
   ```
   
   
