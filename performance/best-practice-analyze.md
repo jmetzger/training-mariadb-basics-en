@@ -25,3 +25,9 @@ mysql>-- example
 mysql>kill 44 
 ```
 
+
+## Explain what is going on
+
+```
+Explain Select.... 
+```
