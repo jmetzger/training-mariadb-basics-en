@@ -54,11 +54,13 @@
      * Replikation mit GTID :: https://www.admin-magazin.de/Das-Heft/2017/02/MySQL-Replikation-mit-GTIDs
      * Replikation Read/Write - Split: https://proxysql.com/blog/configure-read-write-split/
      
-  1. Performance - Recap 
+  1. Performance 
      * [Best Practices](/performance/best-practices.md)
      * [Example sys-schema and Reference](/tools/sys.md)
      * [Change schema online (pt-online-schema-change)](https://www.percona.com/doc/percona-toolkit/3.0/pt-online-schema-change.html)
      * [io-Last/CPU-Last](performance/last.md) 
+     * [Optimizer-Hints](performance/optimizer-hints.md) 
+     
      
   1. Documentation / Literature 
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
