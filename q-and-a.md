@@ -67,3 +67,20 @@ No, this is not possible
 ```
 No, there is no testing framework with MySQL 
 ```
+
+## 8. MariaDB
+
+  * flashback 
+  * Verschlüsselung von Tabellen // mariabackup 
+  * Einige Storage Engine (Aria -> MyISAM - crash-recovery) 
+  * JSON anders implementiert 
+  * galera 
+  * feature: defragementation 
+  
+  ```
+  MysqL 8 does not:
+  decode 
+  set profiling 
+  ```
+  
+  
