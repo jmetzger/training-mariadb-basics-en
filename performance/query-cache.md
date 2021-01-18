@@ -1,10 +1,5 @@
 # Query Cache 
 
-## Defaults 
-
-  * mysql 5.7, query_cache is still compile into mysql, but disabled
-  * mysql 8, query cache not available anymore 
-  
 ## Performance query cache 
 
   * Always try to optimize innodb with disabled query cache first (innodb_buffer_pool) 
