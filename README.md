@@ -17,6 +17,9 @@
   
   1. Training Data 
      * [Setup training data "contributions"](/indexes/setup-training-data-contributions.md)
+     
+  1. Performance 
+     * [io-Last/CPU-Last](performance/last.md) 
   
   1. Documentation 
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
