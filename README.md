@@ -8,6 +8,9 @@
      * [Optimizer-Basics](optimizer-basics.md) 
      * [Storage Engines](/basics/storage-engines.md) 
 
+  1. Installation 
+     * [Installation (Ubuntu)](installation-ubuntu.md) 
+
   1. Documentation 
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
 
