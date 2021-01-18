@@ -11,3 +11,11 @@ apt update
 apt install mariadb-server 
 
 ```
+
+# Secure installation 
+
+```
+mariadb-secure-installation 
+# OR: if not present before 10.4 
+mysql_secure_installation 
+```
