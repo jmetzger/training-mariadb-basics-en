@@ -2,6 +2,9 @@
 
 ## Agenda 
 
+  1. Architectur of MariaDB 
+     * [Architecture Server (Steps)](/performance/mysql-server-architecture.md)
+
   1. Performance related aspects of the MySQL architecture  
   
      * [Architecture Server (Steps)](/performance/mysql-server-architecture.md)
