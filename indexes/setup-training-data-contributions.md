@@ -1,4 +1,4 @@
-# Setup training data contributions 
+# Setup training data contributions (ubuntu 20.04) 
 
 ## Walkthrough 
 
@@ -6,7 +6,7 @@
 
 ```bash 
 cd /usr/src 
-apt update; apt install git 
+apt update; apt install -y git 
 git clone https://github.com/jmetzger/dedupe-examples.git
 cd dedupe-examples 
 cd mysql_example 
