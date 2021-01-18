@@ -11,6 +11,10 @@
   1. Installation 
      * [Installation (Ubuntu)](installation-ubuntu.md) 
 
+   1. InnoDB - Storage Engine 
+     * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
+     * [Important InnoDB - configuration - options to optimized performance](/innodb/innodb.md) 
+  
   1. Documentation 
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
 
@@ -44,9 +48,7 @@
      * Practical examples: How to work with locks 
      * Identifying long running locks and how to avoid them 
   
-  1. InnoDB - Storage Engine 
-     * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
-     * [Important InnoDB - configuration - options to optimized performance](/innodb/innodb.md) 
+ 
     
   1. Optimal use of indexes
      * [Setup training data "contributions"](/indexes/setup-training-data-contributions.md)
