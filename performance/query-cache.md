@@ -72,3 +72,23 @@ mysql> flush status;
 Query OK, 0 rows affected (0.00 sec)
 
 ```
+
+## Performance bottleneck - mutex 
+
+https://mariadb.com/de/resources/blog/flexible-mariadb-server-query-cache/
+
+```
+
+```
+
+## Something planned ?
+
+  * Nope ;o( Demand is new  
+  * You might be able to use Demand together with maxscale 
+  * Refer to: 
+  https://mariadb.com/de/resources/blog/flexible-mariadb-server-query-cache/
+  
+  
+  ```
+  A mutual exclusion object (mutex) is a programming object that allows multiple program threads to share a resource (such as a folder) but not simultaneously. Mutex is set to unlock when the data is no longer needed or when a routine is finished. Mutex creates a bottleneck effect. The blocking means only one query can look at the Query Cache at a time and other queries must wait. A query that must wait to look in the cache only to find it isn’t in the cache will be slowed instead of being accelerated.
+  ```
