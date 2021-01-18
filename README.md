@@ -6,11 +6,17 @@
      * [Architecture Server (Steps)](/performance/mysql-server-architecture.md)
      * [Query Cache Usage and Performance](/performance/query-cache.md)
      * [Optimizer-Basics](optimizer-basics.md) 
+     * [Storage Engines](/basics/storage-engines.md) 
+
+  1. Documentation 
+     * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
+
+
+
+
+
 
   1. Performance related aspects of the MySQL architecture  
-  
-     * [Architecture Server (Steps)](/performance/mysql-server-architecture.md)
-     * [Query - Cache](/performance/query-cache.md)
      * [Views and performance](/performance/views.md) 
   
   1. Diagnosis and measurement of performance 
