@@ -11,13 +11,15 @@
   1. Installation 
      * [Installation (Ubuntu)](installation-ubuntu.md) 
 
-   1. InnoDB - Storage Engine 
-      * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
-      * [Important InnoDB - configuration - options to optimized performance](/innodb/innodb.md) 
+  1. InnoDB - Storage Engine 
+     * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
+     * [Important InnoDB - configuration - options to optimized performance](/innodb/innodb.md) 
+  
+  1. Training Data 
+     * [Setup training data "contributions"](/indexes/setup-training-data-contributions.md)
   
   1. Documentation 
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
-
 
   1. --
 
@@ -51,7 +53,7 @@
  
     
   1. Optimal use of indexes
-     * [Setup training data "contributions"](/indexes/setup-training-data-contributions.md)
+   
      * Index-Types 
        * [Describe and indexes](/indexes/describe-table.md)
        * [Find out indexes](indexes/findout-indexes.md) 
