@@ -9,7 +9,10 @@
      * [Storage Engines](/basics/storage-engines.md) 
 
   1. Installation 
-     * [Installation (Ubuntu)](installation-ubuntu.md) 
+     * [Installation (Ubuntu)](installation-ubuntu.md)
+     
+  1. Security 
+     * [Secure with SSL server/client](security/ssl.md) 
 
   1. InnoDB - Storage Engine 
      * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
