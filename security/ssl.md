@@ -101,6 +101,24 @@ SSL:                    Cipher in use is TLS_AES_256_GCM_SHA384
 
 ```
 
+## Force to use ssl 
+
+
+```
+# on server 
+# now client can only connect, when using ssl 
+mysql> grant USAGE on *.* to remote@10.10.9.144 require ssl;
+```
+
+## On client to enable ssl by default for root 
+```
+vi /root/.my.cnf 
+[mysql]
+ssl 
+
+# now mysql will always use ssl 
+mysql -uxyz -p -h10.10.9.110 
+```
 
 
 ## Ref 
