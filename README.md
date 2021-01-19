@@ -20,6 +20,7 @@
      
   1. Performance 
      * [io-Last/CPU-Last](performance/last.md) 
+     * [Views and performance](/performance/views.md)      
      
   1. Tools 
      * [Percona-toolkit-Installation](/tools/percona-toolkit.md) 
@@ -31,11 +32,6 @@
 
   1. --
 
-
-
-
-  1. Performance related aspects of the MySQL architecture  
-     * [Views and performance](/performance/views.md) 
   
   1. Diagnosis and measurement of performance 
      * [Best practices to narrow down performance problems](performance/best-practice-analyze.md
