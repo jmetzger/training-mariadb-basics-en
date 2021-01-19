@@ -29,25 +29,12 @@ sudo openssl x509 -req -in server-req.pem -days 365000 -CA ca-cert.pem -CAkey ca
 
 ```
 
-## Create Client-Key 
 
-  * You must have created a CA before that 
-  
-```
-# Create Client certificate 
-sudo openssl req -newkey rsa:2048 -days 365000 -nodes -keyout client-key.pem -out client-req.pem
-
-# process RSA - Key 
-sudo openssl rsa -in client-key.pem -out client-key.pem
-
-# sign certficate with CA 
-sudo openssl x509 -req -in client-req.pem -days 365000 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out client-cert.pem
-```
 
 ## Verify certificates 
 
 ```
-openssl verify -CAfile ca-cert.pem server-cert.pem client-cert.pem
+openssl verify -CAfile ca-cert.pem server-cert.pem 
 
 
 ```
@@ -79,7 +66,8 @@ journalctl -u mariadb
 
 ```
 # from 
-# copy /etc/mysql/ssl to client
+# copy /etc/mysql/ssl/ca-cert.pem 
+# to client
 cd /etc/mysql
 tar cvfz ssl.tar.gz ssl
 scp ssl.tar.gz 11trainingdo@ip:/tmp 
@@ -92,13 +80,27 @@ Append/edit in [mysql] section:
 
 ## MySQL Client Configuration ##
 ssl-ca=/etc/mysql/ssl/ca-cert.pem
-ssl-cert=/etc/mysql/ssl/client-cert.pem
-ssl-key=/etc/mysql/ssl/client-key.pem
+
 ##  Force TLS version for client too
 #tls_version = TLSv1.2,TLSv1.3
 ### This option is disabled by default ###
 ### ssl-verify-server-cert ###
+
+# only works if you have no self-signed certificate
+ssl-verify-server-cert
+
+
 ```
+
+## Test connection on client 
+
+```
+mysql --ssl -uxyz -p -h <ip-of-server>
+mysql>status
+SSL:                    Cipher in use is TLS_AES_256_GCM_SHA384
+
+```
+
 
 
 ## Ref 
