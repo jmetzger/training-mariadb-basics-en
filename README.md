@@ -1,4 +1,4 @@
-# MySQL performance training (individual) + 13.01. - 15.01.2021 
+# MySQL performance training (individual) + 18.01. - 21.01.2021 
 
 ## Agenda 
 
@@ -20,6 +20,11 @@
      
   1. Performance 
      * [io-Last/CPU-Last](performance/last.md) 
+     
+  1. Tools 
+     * [Percona-toolkit-Installation](/tools/percona-toolkit.md) 
+     * [pt-query-digist - analyze slow logs](/tools/pt-query-digest.md) 
+     * [pt-online-schema-change howto](/tools/pt-online-schema-change.md)
   
   1. Documentation 
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
