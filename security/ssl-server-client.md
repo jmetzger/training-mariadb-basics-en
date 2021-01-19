@@ -1,4 +1,4 @@
-# ssl - mariadb (only server certificate) 
+# ssl - mariadb (server and client certificate) 
 
 ## Create CA and Server-Key 
 
