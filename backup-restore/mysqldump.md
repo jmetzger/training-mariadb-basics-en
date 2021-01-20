@@ -7,8 +7,7 @@
 
 # on local systems using socket, there are no huge benefits concerning --compress
 # when you dump over the network use it for sure 
-mysqldump —-all-databases —-single-transaction —-gtid —-master-data=2 —-routines 
---events —-flush-logs --compress > /usr/src/all-databases.sql 
+mysqldump --all-databases --single-transaction --gtid --master-data=2 --routines --events --flush-logs --compress > /usr/src/all-databases.sql;
 ```
 
 ## Version with zipping 
