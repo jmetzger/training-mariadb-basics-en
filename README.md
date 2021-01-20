@@ -24,7 +24,11 @@
   1. Performance 
      * [io-Last/CPU-Last](performance/last.md) 
      * [Views and performance](/performance/views.md)      
-     
+
+  1. Backup and Restore (Point-In-Time aka PIT) 
+     * [Backup with mysqldump - best practices](backup-restore/mysqldump.md) 
+
+
   1. Tools 
      * [Percona-toolkit-Installation](/tools/percona-toolkit.md) 
      * [pt-query-digist - analyze slow logs](/tools/pt-query-digest.md) 
