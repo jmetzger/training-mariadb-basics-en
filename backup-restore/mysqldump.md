@@ -10,6 +10,14 @@
 mysqldump --all-databases --single-transaction --gtid --master-data=2 --routines --events --flush-logs --compress > /usr/src/all-databases.sql;
 ```
 
+## With PIT_Recovery you can use --delete-master-logs 
+
+  * All logs before flushing will be deleted 
+  
+```
+mysqldump --all-databases --single-transaction --gtid --master-data=2 --routines --events --flush-logs --compress --delete-master-logs > /usr/src/all-databases.sql;
+```
+
 ## Version with zipping 
 
 ```
