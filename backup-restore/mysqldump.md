@@ -32,3 +32,15 @@ date; mysqldump --all-databases --single-transaction --gtid --master-data=2 --ro
 Mi 20. Jan 09:40:44 CET 2021
 Mi 20. Jan 09:41:55 CET 2021 
 ```
+
+## Seperated sql-structure files and data-txt files including master-data for a specific database 
+
+```
+ # backups needs to be writeable for mysql 
+ mkdir /backups
+ chmod 777 /backups
+ chown mysql:mysql /backups
+ mysqldump --tab=/backups contributions
+ mysqldump --tab=/backups --master-data=2 contributions
+ mysqldump --tab=/backups --master-data=2 contributions > /backups/master-data.tx
+```
