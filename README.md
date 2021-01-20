@@ -27,6 +27,7 @@
 
   1. Backup and Restore (Point-In-Time aka PIT) 
      * [Backup with mysqldump - best practices](backup-restore/mysqldump.md) 
+     * [Flashback](backup-restore/flashback.md) 
 
 
   1. Tools 
