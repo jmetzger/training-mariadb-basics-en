@@ -31,6 +31,18 @@
      * [mariabackup](backup-restore/mariabackup.md) 
      * [Use xtrabackup for MariaDB 5.5](backup-restore/xtrabackup-for-mariadb-5-5.md)
 
+  1. Optimal use of indexes
+   
+     * Index-Types 
+       * [Describe and indexes](/indexes/describe-table.md)
+       * [Find out indexes](indexes/findout-indexes.md) 
+     * Use indexes for complex scenarios (correctly ;o)) 
+     * Analyze optimal and suboptimal indexing 
+     * Index strategies for high performance 
+     * [Index and Functions (Cool new feature in MySQL 5.7)](index-and-functions.md) 
+     * [Index and Likes](/indexes/like-index-not-index.md)   
+     * [profiling-get-time-for-execution-of.query](/indexes/profiling.md) 
+     * [Find out cardinality without index](/indexes/cardinality.md)
 
   1. Tools 
      * [Percona-toolkit-Installation](/tools/percona-toolkit.md) 
