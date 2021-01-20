@@ -10,3 +10,5 @@ e.g. Aria
 
   * MariaDB :: Galera is already included (3-Nodes für Ausfallsicherheit) 
   * Mysql: MySQL Group Replication (not mature) - kein auto deployment 
+
+## Flashback 
