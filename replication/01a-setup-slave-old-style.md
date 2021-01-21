@@ -43,8 +43,25 @@ mysql -urepl -p -h10.10.9.110
 show grants 
 ```
 
+## Step 5a: Set server-id on master -> 1 
 
+```
+[mysqld]
+server-id=1
 
+systemctl restart mariadb 
+## 
+```
+
+# Step 5b: Set server-id on slave -> 2 
+
+```
+[mysqld]
+server-id=2
+
+systemctl restart mariadb 
+## 
+```
 
 ## Walkthrough 
 
