@@ -105,6 +105,15 @@ Slave_SQL_Running: Yes
 
 ```
 
+## Step 8: not working on 5.5. 
+
+```
+Switch to using gtid later on:
+
+show slave status # look for using_gtid 
+CHANGE MASTER TO MASTER_USE_GTID = slave_pos
+show slave status # look for using_gtid 
+```
 
 ## Walkthrough 
 
