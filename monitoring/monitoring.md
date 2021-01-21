@@ -74,6 +74,12 @@ mysqladmin status
 | Created_tmp_disk_tables	| Number of temporary tables (typically for joins) stored on slow spinning disks, instead of faster RAM.	| None |
 | (Full table scans) Handler_read%	Number of times the system reads the first row of a table index. (if 0 a table scan is done - because no key was read). Sequential reads might indicate a faulty index.	None
 
+### Track Errors 
+
+```
+journalctl -u mariadb | grep -i Error
+```
+
 
 ## Ref 
 
