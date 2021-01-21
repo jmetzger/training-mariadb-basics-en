@@ -110,9 +110,11 @@ Slave_SQL_Running: Yes
 ```
 Switch to using gtid later on:
 
-show slave status # look for using_gtid 
-CHANGE MASTER TO MASTER_USE_GTID = slave_pos
-show slave status # look for using_gtid 
+show slave status; # look for using_gtid 
+stop slave;
+CHANGE MASTER TO MASTER_USE_GTID = slave_pos;
+show slave status; # look for using_gtid 
+start slave; 
 ```
 
 ## Walkthrough 
