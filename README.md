@@ -25,6 +25,7 @@
      * [io-Last/CPU-Last](performance/last.md) 
      * [Views and performance](/performance/views.md)  
      * [Partitions and Explain](partitions/partitions-explain.md) 
+     * [3 Phases of DataSize]3-phases-of-data-size-and-performance-impact.md
 
   1. Backup and Restore (Point-In-Time aka PIT) 
      * [Backup with mysqldump - best practices](backup-restore/mysqldump.md) 
