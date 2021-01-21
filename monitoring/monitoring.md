@@ -88,3 +88,5 @@ journalctl -u mariadb | grep -i Error
 ### Monitoring with pmm (Percona Management Monitoring) 
 
 https://pmmdemo.percona.com
+
+[Documentation](https://www.percona.com/doc/percona-monitoring-and-management/2.x/details/commands/pmm-admin.html)
