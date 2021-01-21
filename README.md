@@ -41,6 +41,9 @@
      * [profiling-get-time-for-execution-of.query](/indexes/profiling.md) 
      * [Find out cardinality without index](/indexes/cardinality.md)
 
+  1. Monitoring 
+     * [What to monitor?](/monitoring/monitoring.md) 
+
   1. Tools 
      * [Percona-toolkit-Installation](/tools/percona-toolkit.md) 
      * [pt-query-digist - analyze slow logs](/tools/pt-query-digest.md) 
