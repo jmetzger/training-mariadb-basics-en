@@ -2,8 +2,7 @@
 
 ## Step 1: mysqldump on master 
 ```
-mkdir /backups 
-mkdir mysqldumpdir 
+mkdir -p /backups/mysqldumpdir 
 # in version 5.5. there is not --git so use it without --gtid
 mysqldump --all-databases --single-transaction --master-data=2 --routines --events --compress > /backups/mysqldumpdir/master-databases.sql;
 
