@@ -99,6 +99,10 @@ mysql < master.txt
 
 # in mysql -> show slave status 
 mysql>show slave status 
+# Looking for
+Slave_IO_Running: Yes
+Slave_SQL_Running: Yes
+
 ```
 
 
