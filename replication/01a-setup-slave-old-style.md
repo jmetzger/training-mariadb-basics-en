@@ -39,9 +39,11 @@ GRANT REPLICATION SLAVE ON *.*  TO 'repl'@'10
 # as root@slave 
 # you be able to connect to 
 mysql -urepl -p -h10.10.9.110
-
-
+# test if grants are o.k. 
+show grants 
 ```
+
+
 
 
 ## Walkthrough 
