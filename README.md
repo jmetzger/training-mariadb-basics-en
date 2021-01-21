@@ -47,7 +47,8 @@
      * [What to monitor?](/monitoring/monitoring.md) 
 
   1. Replication 
-     * [Slave einrichten](/replication/01-master-slave-gtid.md)
+     * [Slave einrichten -gtid](/replication/01-master-slave-gtid.md)
+     * [Slave einrichten - master_pos](/replication/01a-setup-slave-old-style.md)
      * [MaxScale-Proxy mit Monitoring](/replication/02-mariadbmon.md)
      * [Failover](/replication/03-automatic-failover-master-slave.md)
 
