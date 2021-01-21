@@ -24,7 +24,22 @@ mv mysql mysql.bkup
 mariadb-install-db --user=mysql 
 ```
 
+## Step 4: Setup replication user on master 
 
+```
+# as root@master 
+#mysql>
+CREATE USER repl@'10.10.9.%' IDENTIFIED BY 'password';
+GRANT REPLICATION SLAVE ON *.*  TO 'repl'@'10
+```
+
+## Step 4a (Optional): Test repl user (connect) from slave 
+
+```
+# as root@slave 
+
+
+```
 
 
 ## Walkthrough 
