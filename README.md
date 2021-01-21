@@ -52,7 +52,7 @@
 ## Add-Ons (Further read) 
 
   1. Diagnosis and measurement of performance 
-     * [Best practices to narrow down performance problems](performance/best-practice-analyze.md
+     * [Best practices to narrow down performance problems](performance/best-practice-analyze.md)
      
   1. Performance and optimization of SQL statements
      * [Do not use '*' whenever possible](/performance/select-no-star-please.md)
