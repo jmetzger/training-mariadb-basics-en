@@ -1,14 +1,12 @@
-# Setting up new slave with master-slave replication 
+# Setting up new slave with master-slave replication (without gtid with mariadb 5.5)
 
-## Step 1: mariabackup on master 
-
+## Step 1: mysqldump on master 
 ```
 mkdir /backups 
-# target-dir needs to be empty or not present 
-mariabackup --target-dir=/backups/20210121 --backup 
-# apply ib_logfile0 to tablespaces 
-# after that ib_logfile0 ->  0 bytes 
-mariabackup --target-dir=/backups/20210121 --prepare 
+mkdir mysqldumpdir 
+# in version 5.5. there is not --git so use it without --gtid
+mysqldump --all-databases --single-transaction --master-data=2 --routines --events --compress > /backups/mysqldumpdir/master-databases.sql;
+
 ```
 
 
