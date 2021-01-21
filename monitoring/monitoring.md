@@ -81,6 +81,10 @@ journalctl -u mariadb | grep -i Error
 ```
 
 
-## Ref 
+### Ref 
 
   * https://blog.serverdensity.com/how-to-monitor-mysql/
+
+### Monitoring with pmm (Percona Management Monitoring) 
+
+https://pmmdemo.percona.com
