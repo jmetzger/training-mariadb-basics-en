@@ -49,7 +49,7 @@
   1. Replication 
      * [Slave einrichten -gtid](/replication/01-master-slave-gtid.md)
      * [Slave einrichten - master_pos](/replication/01a-setup-slave-old-style.md)
-     * [MaxScale installieren](/replication/01.5-maxscale-installation.md)
+     * [MaxScale installieren](/replication/02.5-maxscale-installation.md)
      * [MaxScale-Proxy mit Monitoring](/replication/02-mariadbmon.md)
      * [Failover](/replication/03-automatic-failover-master-slave.md)
 
