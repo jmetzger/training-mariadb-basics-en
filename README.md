@@ -46,6 +46,12 @@
   1. Monitoring 
      * [What to monitor?](/monitoring/monitoring.md) 
 
+  1. Replication 
+     * [Slave einrichten](/replication/01-master-slave-gtid.md)
+     * [MaxScale-Proxy mit Monitoring](/replication/02-mariadbmon.md)
+     * [Failover](/replication/03-automatic-failover-master-slave.md)
+
+
   1. Tools 
      * [Percona-toolkit-Installation](/tools/percona-toolkit.md) 
      * [pt-query-digist - analyze slow logs](/tools/pt-query-digest.md) 
