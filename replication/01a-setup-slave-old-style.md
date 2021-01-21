@@ -14,10 +14,10 @@ mysqldump --all-databases --single-transaction --master-data=2 --routines --even
 # root@master:
 rsync -e ssh -avP /backups/mysqldumpdir/master-databases.sql kurs@10.10.9.144:/home/kurs/
 ```
-## Step 3 (Optional): Be sure that slave is really vanilla 
+## Step 3 (Optional): Be sure that slave is really fresh (no data yet) 
 
 ```
-# if old not wanted data is present, e.g. other databases, start from vanilla by so:
+# if old not wanted data is present, e.g. other databases, start with fresh-installation by so:
 # as root
 cd /var/lib 
 mv mysql mysql.bkup 
