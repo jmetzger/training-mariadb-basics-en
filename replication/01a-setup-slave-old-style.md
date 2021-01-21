@@ -53,7 +53,7 @@ systemctl restart mariadb
 ## 
 ```
 
-# Step 5b: Set server-id on slave -> 2 + same config as server 1
+## Step 5b: Set server-id on slave -> 2 + same config as server 1
 
 ```
 [mysqld]
@@ -62,7 +62,7 @@ server-id              = 2
 log_bin                = /var/log/mysql/mysql-bin.log
 
 systemctl restart mariadb 
-## auf dem master mit rsync rüberschrieben 
+## auf dem master config mit rsync rüberschrieben 
 ## root@master 
 rsync -e ssh -avP /etc/mysql/mariadb.conf.d/z_uniruhr.cnf kurs@10.10.9.144:/home/kurs/
 ## root@slave 
@@ -71,6 +71,36 @@ chown root:root /etc/mysql/mariadb.conf.d
 systemctl restart mariadb 
 
 ```
+
+## Step 6: Restore Data on slave 
+
+```
+# root@slave 
+cd /home/kurs 
+mysql < master-databases.sql 
+```
+
+## Step 7: master.txt for change command 
+
+```
+# root@slave
+# /root/master.txt 
+# get information from master-databases.sql dump 
+CHANGE MASTER TO 
+   MASTER_HOST="10.10.9.110", 
+   MASTER_PORT=3310, 
+   MASTER_USER="repl",  
+   MASTER_PASSWORD="password", 
+   MASTER_LOG_FILE='mysqld-bin.000001',
+   MASTER_LOG_POS=568;
+# Version 1
+mysql < master.txt 
+# or: copy paste into mysql> 
+
+# in mysql -> show slave status 
+mysql>show slave status 
+```
+
 
 ## Walkthrough 
 
