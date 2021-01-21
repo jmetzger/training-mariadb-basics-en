@@ -68,7 +68,7 @@ No, this is not possible
 No, there is no testing framework with MySQL 
 ```
 
-## 8. MariaDB
+## 8. MariaDB - Advantages
 
   * flashback 
   * Verschlüsselung von Tabellen // mariabackup 
