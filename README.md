@@ -23,7 +23,8 @@
      
   1. Performance 
      * [io-Last/CPU-Last](performance/last.md) 
-     * [Views and performance](/performance/views.md)      
+     * [Views and performance](/performance/views.md)  
+     * [Partitions and Explain](partitions/partitions-explain.md) 
 
   1. Backup and Restore (Point-In-Time aka PIT) 
      * [Backup with mysqldump - best practices](backup-restore/mysqldump.md) 
@@ -70,15 +71,14 @@
      * [Example sys-schema and Reference](/tools/sys.md)
      * [Change schema online (pt-online-schema-change)](https://www.percona.com/doc/percona-toolkit/3.0/pt-online-schema-change.html)
      * [Optimizer-Hints](performance/optimizer-hints.md) 
+     
     
   1. Documentation / Literature 
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
      * [Last Training](https://github.com/jmetzger/training-mysql-developers-basics)
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
      * [MariaDB Galera Cluster](http://schulung.t3isp.de/documents/pdfs/mariadb/mariadb-galera-cluster.pdf)
-     * [MySQL Galera Cluster](https://galeracluster.com/downloads/)
-     
-   1. [Partitions and Explain](partitions/partitions-explain.md)    
+     * [MySQL Galera Cluster](https://galeracluster.com/downloads/)   
    
    1. [Questions and Answers](q-and-a.md)
       * [migration-mysql-update-5.6->5.7](migration-mysql.md)
