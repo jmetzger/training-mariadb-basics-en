@@ -12,6 +12,9 @@
      * [start/stop/status and logs](start-stop-status-logs.md)
      * [Is mariadb listening to the outside world (and how to fix)?](lsof.md)     
 
+  1. Administration 
+     * [Debug configuration error](debug-mariadb-configuration-error.md)
+
 
   1. InnoDB - Storage Engine 
      * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
