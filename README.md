@@ -1,4 +1,4 @@
-# MySQL performance training (individual) + 18.01. - 21.01.2021 
+# MariaDB Basics 
 
 ## Agenda 
 
