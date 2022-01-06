@@ -1,5 +1,15 @@
 # Installation Ubuntu 20.04 
 
+## Install version from distribution (older version)
+
+```
+apt update
+apt install mariadb-server 
+
+```
+
+## Install Newest version from mariadb
+
 ```
 https://downloads.mariadb.org/mariadb/repositories/
 # repo 
