@@ -14,7 +14,7 @@ How your data is stored
 
 ## Looks like
 
-![MariaDB Process](/performance/mysql-server-architecture.png)
+![MariaDB Process](/images/mysql-server-architecture.png)
 
 
 ## What do they do ?
