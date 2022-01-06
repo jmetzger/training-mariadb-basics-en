@@ -12,6 +12,11 @@ How your data is stored
   * Performance, features and other characteristics you want
 
 
+## Looks like
+
+![MariaDB Process](/performance/mysql-server-architecture.png)
+
+
 ## What do they do ?
 
   * In charge for: Responsible for storing and retrieving all data stored in MySQL
