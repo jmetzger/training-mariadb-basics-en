@@ -10,7 +10,7 @@
   1. Installation / Configuration
      * [Installation (Ubuntu)](installation-ubuntu.md)
      * [start/stop/status and logs](start-stop-status-logs.md)
-     * [Is mariadb listening to the outside world ?](lsof.md)     
+     * [Is mariadb listening to the outside world (and how to fix)?](lsof.md)     
 
 
   1. InnoDB - Storage Engine 
