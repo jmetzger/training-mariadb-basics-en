@@ -14,7 +14,7 @@
 
   1. Administration 
      * [Debug configuration error](debug-mariadb-configuration-error.md)
-
+     * [Server System Variables](server-system-variables.md)
 
   1. InnoDB - Storage Engine 
      * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
