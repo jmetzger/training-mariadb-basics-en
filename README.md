@@ -7,8 +7,9 @@
      * [Query Cache Usage and Performance](/performance/query-cache.md)
      * [Storage Engines](/basics/storage-engines.md) 
 
-  1. Installation 
+  1. Installation / Configuration
      * [Installation (Ubuntu)](installation-ubuntu.md)
+     * [start/stop/status and logs](start-stop-status-logs.md)
      
   1. Security 
      * [Secure with SSL server/client](security/ssl.md) 
