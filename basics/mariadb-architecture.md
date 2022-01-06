@@ -1,3 +1,3 @@
 # MariaDB Architecture 
 
-![MariaDB Server Architecture](/images/mysql-server-architecture.png)
+![MariaDB Server Architecture](/images/mages/mysql-architecture.jpg)
