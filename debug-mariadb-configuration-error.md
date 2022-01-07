@@ -3,22 +3,23 @@
 ## Walkthrough 
 
 ```
-# Dienst startet nicht / nach Ausführen von systemctl restart wird Fehlermeldung ausgegeben
+# Service is not restarting - error giving
 systemctl restart mariadb.service 
 
-# Schritt 1 : status -> was sagen die logs (letzte 10 Zeilen) 
+# Step 1 : status -> what do the logs tell (last 10 lines) 
 systemctl status mariadb.service 
 
-# Nicht fündig-> Schritt 2:
-jourrnalctl -xe
+# no findings -> step 2:
+journalctl -xe
 
-# Nicht fündig -> Schritt 3:
+# no findings -> step 3:
 journalctl -u mariadb.service 
+# or journalctl -u mariadb 
 
-# Nicht fündig -> Schritt 4:
-# Spezifisches Log von Dienst suchen 
-# und evtl. LogLevel von Dienst hochsetzen
-# z.B. bei mariadb (durch Internetrecherche herausfinden) 
+# no findings -> step 4:
+# search specific log for service 
+# and eventually need to increase the log level
+# e.g. with mariadb (find through internet research)
 less /var/log/mysql/error.log 
 
 # Nicht fündig -> Schritt 5
@@ -29,13 +30,7 @@ less /var/log/mysql/error.log
 /var/log/messages 
 ```
 
-## Wie verfahren bei SystemV 
-
-```
-Wie bei walkthrough aber ab Schritt 4
-```
-
-## Find error in logs quickly
+## Find errors in logs quickly
 
 ```
 cd /var/log/mysql 
