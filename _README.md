@@ -18,6 +18,7 @@
      * [Handling general_log](#handling-general_log)
      * [Show structure of database](#show-structure-of-database)
      * [Binary Logging](#binary-logging)
+     * [Kill Session/User](#kill-sessionuser)
 
   1. Training Data 
      * [Setup sakila test database](#setup-sakila-test-database)
@@ -36,6 +37,9 @@
      * [Flashback](#flashback)
      * [mariabackup](#mariabackup)
      * [Use xtrabackup for MariaDB 5.5](#use-xtrabackup-for-mariadb-5.5)
+
+  1. Upgrading / Patching 
+     * [Upgrade vom 10.3 (Distri Ubuntu 20.04) -> 10.4 (MariaDB-Foundation)](#upgrade-vom-10.3-distri-ubuntu-20.04-->-10.4-mariadb-foundation)
 
   1. Documentation 
      * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
@@ -84,19 +88,12 @@
      * [Example sys-schema and Reference](#example-sys-schema-and-reference)
      * [Change schema online (pt-online-schema-change)](https://www.percona.com/doc/percona-toolkit/3.0/pt-online-schema-change.html)
      * [Optimizer-Hints](#optimizer-hints)
-     
-    
+      
   1. Documentation / Literature 
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
-     * [Last Training](https://github.com/jmetzger/training-mysql-developers-basics)
-     * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
      * [MariaDB Galera Cluster](http://schulung.t3isp.de/documents/pdfs/mariadb/mariadb-galera-cluster.pdf)
      * [MySQL Galera Cluster](https://galeracluster.com/downloads/)
    
-   1. [Questions and Answers](q-and-a.md)
-      * [migration-mysql-update-5.6->5.7](migration-mysql.md)
-    
-   1. [mysql-do-nots](/performance/mysql-do-nots.md)
    
 
 <div class="page-break"></div>
@@ -538,6 +535,23 @@ mysqlbinlog --no-defaults -vv mysqld-bin.000001
 ```
 
 
+### Kill Session/User
+
+
+```
+MariaDB [(none)]> show processlist;
++----+-------------+-----------+------+---------+------+--------------------------+--------------------+----------+
+| Id | User        | Host      | db   | Command | Time | State                    | Info               | Progress |
++----+-------------+-----------+------+---------+------+--------------------------+--------------------+----------
+| 37 | root        | localhost | NULL | Query   |    0 | Init                     | show processlist   |    0.000 |
+| 38 | root        | localhost | NULL | Query   |   10 | User sleep               | select sleep(1000) |    0.000 |
+ 
+ # kill thread 38. Connection will be interrupted. User session will be cancelled 
+ kill 38
+
+
+```
+
 ## Training Data 
 
 ### Setup sakila test database
@@ -894,6 +908,57 @@ https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/
   * https://www.percona.com/doc/percona-xtrabackup/2.4/index.html
   
   
+
+## Upgrading / Patching 
+
+### Upgrade vom 10.3 (Distri Ubuntu 20.04) -> 10.4 (MariaDB-Foundation)
+
+
+### Prerequisites
+
+```
+Ubuntu 20.04 
+MariaDB-Server from Distri
+
+Install new 10.4 from Mariadb.org 
+
+```
+### Prepare 
+
+  * Create backup of system (with mariabackup and/or mysqldump) 
+
+### Steps 
+
+```
+## 1. systemctl stop mariadb 
+## 2. apt remove mariadb-* 
+## 3. Doublecheck if components left: apt list --installed | grep mariadb
+## 4. Setup repo for mariadb
+## 5. apt update 
+## 6. apt install mariadb-server 
+
+## 7. systemctl enable --now mariadb # enable for next reboot and start immediately 
+## necessary for redhat 
+
+## 8. Doublecheck if mysql_upgrade was done
+cat /var/lib/mysql_upgrade_info 
+
+```
+
+### Important - Check mysql - configuration structure
+
+```
+## Which directories are loaded in 
+/etc/mysql/my.cnf 
+
+## Eventually move files to the right directory
+## As needed in migration from 10.3 (Distri) to 10.4 (mariadb.org) on Ubuntu 20.04
+
+```
+
+### Documentation 
+
+  * https://mariadb.com/kb/en/upgrading-from-mariadb-103-to-mariadb-104/
 
 ## Documentation 
 
@@ -1855,14 +1920,6 @@ total_memory_allocated: 0 bytes
 ### Effective MySQL
 
   * https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796
-
-### Last Training
-
-  * https://github.com/jmetzger/training-mysql-developers-basics
-
-### MySQL - Performance - PDF
-
-  * http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf
 
 ### MariaDB Galera Cluster
 
