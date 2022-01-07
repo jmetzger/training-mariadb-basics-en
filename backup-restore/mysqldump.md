@@ -18,6 +18,11 @@ mysqldump --all-databases --single-transaction --gtid --master-data=2 --routines
 mysqldump --all-databases --single-transaction --gtid --master-data=2 --routines --events --flush-logs --compress --delete-master-logs > /usr/src/all-databases.sql;
 ```
 
+## Alternative - flushing logs 
+
+  * https://mariadb.com/kb/en/purge-binary-logs/
+
+
 ## Version with zipping 
 
 ```
