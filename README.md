@@ -31,6 +31,7 @@
      * [General](backup-general.md)
      * [Backup and Create new database based on backup](backup-new-db.md)
      * [Backup with mysqldump - best practices](backup-restore/mysqldump.md) 
+     * [PIT - Point-in-time-Recovery Exercise](backup-restore/pit-exercise.md)
      * [Flashback](backup-restore/flashback.md) 
      * [mariabackup](backup-restore/mariabackup.md) 
      * [Use xtrabackup for MariaDB 5.5](backup-restore/xtrabackup-for-mariadb-5-5.md)
