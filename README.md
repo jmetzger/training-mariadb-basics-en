@@ -28,6 +28,7 @@
      * [Important InnoDB - configuration - options to optimized performance](/innodb/innodb.md) 
  
   1. Backup and Restore (Point-In-Time aka PIT) 
+     * [General](backup-general.md)
      * [Backup with mysqldump - best practices](backup-restore/mysqldump.md) 
      * [Flashback](backup-restore/flashback.md) 
      * [mariabackup](backup-restore/mariabackup.md) 
