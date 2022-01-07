@@ -17,20 +17,16 @@
      * [Server System Variables](server-system-variables.md)
      * [Handling general_log](general_log.md)
      * [Show structure of database](show-structure.md)
-     * [Binary Logging](binarylogs.md)
+     * [Binary Logging](binarylog.md)
 
 1. Training Data 
      * [Setup sakila test database](sakila.md)
      * [Setup training data "contributions"](/indexes/setup-training-data-contributions.md)
 
-
   1. InnoDB - Storage Engine 
      * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
      * [Important InnoDB - configuration - options to optimized performance](/innodb/innodb.md) 
-  
-  1. Training Data 
-     * [Setup training data "contributions"](/indexes/setup-training-data-contributions.md)
-     
+ 
   1. Backup and Restore (Point-In-Time aka PIT) 
      * [Backup with mysqldump - best practices](backup-restore/mysqldump.md) 
      * [Flashback](backup-restore/flashback.md) 
