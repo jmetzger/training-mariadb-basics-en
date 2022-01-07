@@ -1,5 +1,11 @@
 # Mariabackup 
 
+## Installation (Ubuntu) 
+
+```
+apt install mariadb-backup 
+```
+
 ## Walkthrough 
 
 ```
