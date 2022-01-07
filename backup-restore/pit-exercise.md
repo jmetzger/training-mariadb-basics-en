@@ -29,3 +29,18 @@ mysql>use sakila; select * from actor;
 # find out the last binlog 
 # Simple take the last binlog 
 
+cd /var/lib/mysql
+# Find the position where the problem occured 
+# and create a recovery.sql - file (before apply full backup)
+mysqlbinlog --no-defaults -vv --stop-position=857 mysqld-bin.000005 > /usr/src/recover.sql
+
+# Step 1: Apply full backup 
+cd /usr/src/
+mysql < all-databases.sql 
+mysql> should be 200 or 202
+mysql> use sakila; select * from actor;
+mysql < recover.sql 
+mysql> -- now it should have all actors before deletion 
+mysql> use sakila; select * from actor;
+
+
