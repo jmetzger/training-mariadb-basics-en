@@ -17,6 +17,7 @@
      * [Server System Variables](server-system-variables.md)
      * [Handling general_log](general_log.md)
      * [Show structure of database](show-structure.md)
+     * [Binary Logging](binary-logs.md)
 
 1. Training Data 
      * [Setup sakila test database](sakila.md)
