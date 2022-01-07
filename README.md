@@ -19,7 +19,7 @@
      * [Show structure of database](show-structure.md)
      * [Binary Logging](binarylog.md)
 
-1. Training Data 
+  1. Training Data 
      * [Setup sakila test database](sakila.md)
      * [Setup training data "contributions"](/indexes/setup-training-data-contributions.md)
 
@@ -32,9 +32,16 @@
      * [Backup and Create new database based on backup](backup-new-db.md)
      * [Backup with mysqldump - best practices](backup-restore/mysqldump.md) 
      * [PIT - Point-in-time-Recovery Exercise](backup-restore/pit-exercise.md)
+     * [Backup / Recover to Network Destination](backup-restore/network.md)
      * [Flashback](backup-restore/flashback.md) 
      * [mariabackup](backup-restore/mariabackup.md) 
      * [Use xtrabackup for MariaDB 5.5](backup-restore/xtrabackup-for-mariadb-5-5.md)
+
+  1. Documentation 
+     * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
+     * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
+
+## Add-Ons (Further read) 
 
   1. Optimal use of indexes
    
@@ -60,12 +67,6 @@
      * [Percona-toolkit-Installation](/tools/percona-toolkit.md) 
      * [pt-query-digist - analyze slow logs](/tools/pt-query-digest.md) 
      * [pt-online-schema-change howto](/tools/pt-online-schema-change.md)
-  
-  1. Documentation 
-     * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
-     * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
-
-## Add-Ons (Further read) 
 
   1. Diagnosis and measurement of performance 
      * [Best practices to narrow down performance problems](performance/best-practice-analyze.md)
