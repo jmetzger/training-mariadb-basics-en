@@ -18,6 +18,7 @@
      * [Handling general_log](general_log.md)
      * [Show structure of database](show-structure.md)
      * [Binary Logging](binarylog.md)
+     * [Kill Session/User](kill.md)
 
   1. Training Data 
      * [Setup sakila test database](sakila.md)
