@@ -43,4 +43,4 @@ mysql < recover.sql
 mysql> -- now it should have all actors before deletion 
 mysql> use sakila; select * from actor;
 
-
+```
