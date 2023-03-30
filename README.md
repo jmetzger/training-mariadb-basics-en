@@ -2,9 +2,8 @@
 
 ## Agenda 
 
-  1. Architectur of MariaDB 
+  1. Architecture of MariaDB 
      * [Architecture Server](/basics/mariadb-architecture.md)
-     * [Query Cache Usage and Performance](/performance/query-cache.md)
      * [Storage Engines](/basics/storage-engines.md) 
 
   1. Installation / Configuration
@@ -15,7 +14,6 @@
   1. Administration 
      * [Debug configuration error](debug-mariadb-configuration-error.md)
      * [Server System Variables](server-system-variables.md)
-     * [Handling general_log](general_log.md)
      * [Show structure of database](show-structure.md)
      * [Binary Logging](binarylog.md)
      * [Kill Session/User](kill.md)
@@ -37,15 +35,18 @@
      * [Flashback](backup-restore/flashback.md) 
      * [mariabackup](backup-restore/mariabackup.md) 
      * [Use xtrabackup for MariaDB 5.5](backup-restore/xtrabackup-for-mariadb-5-5.md)
-
-  1. Upgrading / Patching 
-     * [Upgrade vom 10.3 (Distri Ubuntu 20.04) -> 10.4 (MariaDB-Foundation)](upgrade-10-3-10-4.md)
-
+     
   1. Documentation 
      * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
 
-## Add-Ons (Further read) 
+## Add-Ons (Further read) / backlog 
+
+  1. Architecture of MariaDB 
+     * [Query Cache Usage and Performance](/performance/query-cache.md)
+     
+  1. Administration
+     * [Handling general_log](general_log.md)
 
   1. Optimal use of indexes
    
@@ -88,6 +89,9 @@
      * [Example sys-schema and Reference](/tools/sys.md)
      * [Change schema online (pt-online-schema-change)](https://www.percona.com/doc/percona-toolkit/3.0/pt-online-schema-change.html)
      * [Optimizer-Hints](performance/optimizer-hints.md) 
+    
+  1. Upgrading / Patching 
+     * [Upgrade vom 10.3 (Distri Ubuntu 20.04) -> 10.4 (MariaDB-Foundation)](upgrade-10-3-10-4.md)
       
   1. Documentation / Literature 
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
