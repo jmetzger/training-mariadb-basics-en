@@ -6,7 +6,7 @@
 apt install mariadb-backup 
 ```
 
-## Walkthrough 
+## Walkthrough (Backup) 
 
 ```
 # user eintrag in /root/.my.cnf
@@ -20,14 +20,19 @@ mariabackup --target-dir=/backups/20210120 --backup
 # apply ib_logfile0 to tablespaces 
 # after that ib_logfile0 ->  0 bytes 
 mariabackup --target-dir=/backups/20210120 --prepare 
+```
 
-## Recover 
+## Walkthrough (Recover) 
+
+```
 systemctl stop mariadb 
 mv /var/lib/mysql /var/lib/mysql.bkup 
 mariabackup --target-dir=/backups/20200120 --copy-back 
 chmod -R mysql:mysql /var/lib/mysql
 systemctl start mariadb 
 ```
+
+
 
 ## Ref. 
 https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/
