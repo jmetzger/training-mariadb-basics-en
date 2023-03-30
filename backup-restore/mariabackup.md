@@ -1,6 +1,6 @@
 # Mariabackup 
 
-## Installation (Ubuntu) 
+## Installation (Ubuntu/Debian) 
 
 ```
 apt install mariadb-backup 
