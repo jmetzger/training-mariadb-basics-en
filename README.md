@@ -27,13 +27,8 @@
  
   1. Backup and Restore (Point-In-Time aka PIT) 
      * [General](backup-general.md)
-     * [Backup and Create new database based on backup](backup-new-db.md)
      * [Backup with mysqldump - best practices](backup-restore/mysqldump.md) 
-     * [PIT - Point-in-time-Recovery Exercise](backup-restore/pit-exercise.md)
-     * [Backup / Recover to Network Destination](backup-restore/network.md)
-     * [Flashback](backup-restore/flashback.md) 
      * [mariabackup](backup-restore/mariabackup.md) 
-     * [Use xtrabackup for MariaDB 5.5](backup-restore/xtrabackup-for-mariadb-5-5.md)
      
   1. Documentation 
      * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
@@ -94,6 +89,14 @@
     
   1. Upgrading / Patching 
      * [Upgrade vom 10.3 (Distri Ubuntu 20.04) -> 10.4 (MariaDB-Foundation)](upgrade-10-3-10-4.md)
+     
+  1. Backup and Restore (Point-In-Time aka PIT) 
+     * [General](backup-general.md)
+     * [Backup and Create new database based on backup](backup-new-db.md)
+     * [PIT - Point-in-time-Recovery Exercise](backup-restore/pit-exercise.md)
+     * [Backup / Recover to Network Destination](backup-restore/network.md)
+     * [Flashback](backup-restore/flashback.md) 
+     * [Use xtrabackup for MariaDB 5.5](backup-restore/xtrabackup-for-mariadb-5-5.md)
       
   1. Documentation / Literature 
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
