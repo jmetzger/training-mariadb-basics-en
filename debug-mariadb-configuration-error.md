@@ -22,8 +22,8 @@ journalctl -u mariadb.service
 # e.g. with mariadb (find through internet research)
 less /var/log/mysql/error.log 
 
-# Nicht fündig -> Schritt 5
-# Allgemeines Log
+# Didn't find something -> step 5 
+# General Log 
 # Debian/Ubuntu 
 /var/log/syslog
 # REdhat/Centos 
@@ -34,7 +34,7 @@ less /var/log/mysql/error.log
 
 ```
 cd /var/log/mysql 
-# -i = case insensitive // egal ob gross- oder kleingeschrieben
+# -i = case insensitive // no matter if capital or lower letters 
 cat error.log | grep -i error
 ```
 
