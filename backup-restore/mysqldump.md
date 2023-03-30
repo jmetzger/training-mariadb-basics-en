@@ -1,5 +1,11 @@
 # mysqldump 
 
+## best practice minimal options 
+
+```
+mysqldump --all-databases --events --routines 
+```
+
 ## Useful options for PIT 
 
 ```
