@@ -1,0 +1,4 @@
+# MariaDB 10.6 repository list - created 2023-03-30 06:54 UTC
+# https://mariadb.org/download/
+deb https://ftp.agdsn.de/pub/mirrors/mariadb/repo/10.6/debian bullseye main
+# deb-src https://ftp.agdsn.de/pub/mirrors/mariadb/repo/10.6/debian bullseye main
