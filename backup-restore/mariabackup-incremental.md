@@ -11,7 +11,7 @@
 ```
 # create some data 
 mysql -e "create schema if not exists backuptest" 
-mysql -e "create table data (id int, content varchar(50), primary key(id))" backuptest
+mysql -e "create table if not exists data (id int, content varchar(50), primary key(id))" backuptest
 
 # create a folder for our backup 
 mkdir -p /var/mariadb 
