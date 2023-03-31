@@ -29,7 +29,7 @@
      * [General](backup-general.md)
      * [Backup with mysqldump - best practices](backup-restore/mysqldump.md) 
      * [mariabackup](backup-restore/mariabackup.md) 
-     * [mariadbackup incremental]backup-restore/mariabackup-incremental.md
+     * [mariadbackup incremental](backup-restore/mariabackup-incremental.md)
      
   1. Documentation 
      * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
