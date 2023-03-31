@@ -40,7 +40,7 @@ openssl verify -CAfile ca-cert.pem server-cert.pem
 ### Configure Server 
 ```
 # create file 
-# /etc/mysql/mariadbd.conf.d/z_ssl.cnf 
+# /etc/mysql/mariadb.conf.d/z_ssl.cnf 
 [mysqld]
 ssl-ca=/etc/mysql/ssl/ca-cert.pem
 ssl-cert=/etc/mysql/ssl/server-cert.pem
