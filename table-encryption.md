@@ -21,6 +21,10 @@ chmod -R 500 /etc/mysql;
 ```
 cd /var/lib/mysql/mysql
 # show content - is there readable content ?  
+
+# if strings command not found 
+apt install -y binutils 
+
 strings gtid_slave_pos.ibd 
 
 ```
