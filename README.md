@@ -23,6 +23,7 @@
      
   1. Security and User Rights 
      * [Create User/Grant/Revoke - Management of users](grant-revoke.md)
+     * [Getting rid of specific user after user permissions changes](/security/get-rid-of-user.md)
      * [Disable unix_socket authentication for user](/security/no-unix-sock-auth.md)
      * [Debug and Setup External Connection](/security/debug-external-conn.md) 
      * [Get Rights of user](/security/get-rights-for-user.md)
