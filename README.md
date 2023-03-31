@@ -20,6 +20,18 @@
 
   1. Training Data 
      * [Setup sakila test database](sakila.md)
+     
+  1. Security and User Rights 
+     * [Create User/Grant/Revoke - Management of users](grant-revoke.md)
+     * [Disable unix_socket authentication for user](/security/no-unix-sock-auth.md)
+     * [Debug and Setup External Connection](/security/debug-external-conn.md) 
+     * [Get Rights of user](/security/get-rights-for-user.md)
+     * [Secure with SSL server/client](/security/ssl.md)
+     * [Auth with unix_socket](create-user-unix-socket.md)
+     * [User- and Permission-concepts (best-practice)](/security/user-db-best-practice.md)
+     * [Setup external access](external-access.md)
+     * [Table encryption](table-encryption.md)
+
   
   1. InnoDB - Storage Engine 
      * [InnoDB - Storage Engine - Structure](/innodb/innodb-structure.md) 
