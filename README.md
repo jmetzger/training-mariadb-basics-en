@@ -41,6 +41,7 @@
   1. Documentation 
      * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
+     * [MySQL Performance Blog](https://www.percona.com/blog/choosing-innodb_buffer_pool_size/)
 
 ## Add-Ons (Further read) / backlog 
 
