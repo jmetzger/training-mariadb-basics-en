@@ -71,6 +71,7 @@ mariabackup --prepare --target-dir=/var/mariadb/backup --incremental-dir=/var/ma
 ### Copy-Back 
 
 ```
+systemctl stop mariadb
 cd /var/lib/
 mv mysql mysql.mybkup 
 mariabackup --copy-back --target-dir=/var/mariadb/backup 
