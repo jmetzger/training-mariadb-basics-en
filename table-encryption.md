@@ -20,6 +20,7 @@ chmod -R 500 /etc/mysql;
 
 ```
 cd /var/lib/mysql/mysql
+# show content - is there readable content ?  
 strings gtid_slave_pos.ibd 
 
 ```
