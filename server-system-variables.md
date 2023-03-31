@@ -54,3 +54,8 @@ MariaDB [(none)]> select @@global.long_query_time
  
 
 ```
+
+```
+# Within server 
+SET GLOBAL general_log = 1;
+```
