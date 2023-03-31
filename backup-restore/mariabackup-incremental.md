@@ -37,7 +37,7 @@ mariabackup --backup \
 
 ```
 mysql -e "insert into data (id, content) values (3, 'day3 - dataset 1'),(4, 'day 3 - dataset 2')" backuptest 
-
+mysql -e "select * from data" backuptest 
 
 # now we do the backup based on the last incremnental backup (so basedir is inc1) 
 
