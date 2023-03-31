@@ -7,26 +7,25 @@
 ```
 
 # On Server - create ca and certificates 
-sudo mkdir -p /etc/mysql/ssl
-sudo cd /etc/mysql/ssl
+mkdir -p /etc/mysql/ssl; cd /etc/mysql/ssl
 
 # create ca.  
-sudo openssl genrsa 4096 > ca-key.pem
+openssl genrsa 4096 > ca-key.pem
 
 # create ca-certificate 
 # Common Name: MariaDB CA 
-sudo openssl req -new -x509 -nodes -days 365000 -key ca-key.pem -out ca-cert.pem
+openssl req -new -x509 -nodes -days 365000 -key ca-key.pem -out ca-cert.pem
 
 # create server-cert 
 # Common Name: server1.training.local 
 # Password: --- leave empty ----
-sudo openssl req -newkey rsa:2048 -days 365000 -nodes -keyout server-key.pem -out server-req.pem
+openssl req -newkey rsa:2048 -days 365000 -nodes -keyout server-key.pem -out server-req.pem
 
 # Next process the rsa - key 
-sudo openssl rsa -in server-key.pem -out server-key.pem
+openssl rsa -in server-key.pem -out server-key.pem
 
 # Now sign the key 
-sudo openssl x509 -req -in server-req.pem -days 365000 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out server-cert.pem
+openssl x509 -req -in server-req.pem -days 365000 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out server-cert.pem
 
 ```
 
