@@ -48,7 +48,9 @@ ssl-key=/etc/mysql/ssl/server-key.pem
 ## Set up TLS version here. For example TLS version 1.2 and 1.3 ##
 # Starts from mariadb 10.4.6 not possible before. !!!! 
 tls_version = TLSv1.2,TLSv1.3
+```
 
+```
 # Set ownership 
 chown -vR mysql:mysql /etc/mysql/ssl/
 
