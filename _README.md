@@ -2,9 +2,8 @@
 
 
 ## Agenda
-  1. Architectur of MariaDB 
+  1. Architecture of MariaDB 
      * [Architecture Server](#architecture-server)
-     * [Query Cache Usage and Performance](#query-cache-usage-and-performance)
      * [Storage Engines](#storage-engines)
 
   1. Installation / Configuration
@@ -15,14 +14,19 @@
   1. Administration 
      * [Debug configuration error](#debug-configuration-error)
      * [Server System Variables](#server-system-variables)
-     * [Handling general_log](#handling-general_log)
      * [Show structure of database](#show-structure-of-database)
      * [Binary Logging](#binary-logging)
      * [Kill Session/User](#kill-sessionuser)
 
   1. Training Data 
      * [Setup sakila test database](#setup-sakila-test-database)
-     * [Setup training data "contributions"](#setup-training-data-"contributions")
+     
+  1. Security and User Rights 
+     * [Create User/Grant/Revoke - Management of users](#create-usergrantrevoke---management-of-users)
+     * [Getting rid of specific user after user permissions changes](#getting-rid-of-specific-user-after-user-permissions-changes)
+     * [Secure with SSL server/client](#secure-with-ssl-serverclient)
+     * [Secure with ssl for ubuntu/debian](#secure-with-ssl-for-ubuntudebian)
+     * [Table encryption](#table-encryption)
 
   1. InnoDB - Storage Engine 
      * [InnoDB - Storage Engine - Structure](#innodb---storage-engine---structure)
@@ -30,31 +34,34 @@
  
   1. Backup and Restore (Point-In-Time aka PIT) 
      * [General](#general)
-     * [Backup and Create new database based on backup](#backup-and-create-new-database-based-on-backup)
      * [Backup with mysqldump - best practices](#backup-with-mysqldump---best-practices)
-     * [PIT - Point-in-time-Recovery Exercise](#pit---point-in-time-recovery-exercise)
-     * [Backup / Recover to Network Destination](#backup--recover-to-network-destination)
-     * [Flashback](#flashback)
      * [mariabackup](#mariabackup)
-     * [Use xtrabackup for MariaDB 5.5](#use-xtrabackup-for-mariadb-5.5)
-
-  1. Upgrading / Patching 
-     * [Upgrade vom 10.3 (Distri Ubuntu 20.04) -> 10.4 (MariaDB-Foundation)](#upgrade-vom-10.3-distri-ubuntu-20.04-->-10.4-mariadb-foundation)
-
+     * [mariadbackup incremental](#mariadbackup-incremental)
+     
   1. Documentation 
      * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
+     * [MySQL Performance Blog](https://www.percona.com/blog/choosing-innodb_buffer_pool_size/)
 
-## Add-Ons (Further read) 
+## Add-Ons (Further read) / backlog 
+
+  1. Architecture of MariaDB 
+     * [Query Cache Usage and Performance](#query-cache-usage-and-performance)
+     
+  1. Administration
+     * [Handling general_log](#handling-general_log)
+     
+  1. Training Data
+     * [Setup training data "contributions"](#setup-training-data-"contributions")
 
   1. Optimal use of indexes
    
      * Index-Types 
        * [Describe and indexes](/indexes/describe-table.md)
        * [Find out indexes](indexes/findout-indexes.md) 
-     * [Index and Functions (Cool new feature in MySQL 5.7)](#index-and-functions-cool-new-feature-in-mysql-5.7)
+     * [Index and Functions (Cool new feature in MySQL 5.7)](#index-and-functions-cool-new-feature-in-mysql-57)
      * [Index and Likes](#index-and-likes)
-     * [profiling-get-time-for-execution-of.query](#profiling-get-time-for-execution-of.query)
+     * [profiling-get-time-for-execution-of.query](#profiling-get-time-for-execution-ofquery)
      * [Find out cardinality without index](#find-out-cardinality-without-index)
 
   1. Monitoring 
@@ -64,8 +71,8 @@
      * [Slave einrichten -gtid](#slave-einrichten--gtid)
      * [Slave einrichten - master_pos](#slave-einrichten---master_pos)
      * [MaxScale installieren](#maxscale-installieren)
-     * [Reference: MaxScale-Proxy mit Monitoring](#reference:-maxscale-proxy-mit-monitoring)
-     * [Walkthrough:Automatic Failover Master Slave](#walkthrough:automatic-failover-master-slave)
+     * [Reference: MaxScale-Proxy mit Monitoring](#reference-maxscale-proxy-mit-monitoring)
+     * [Walkthrough:Automatic Failover Master Slave](#walkthroughautomatic-failover-master-slave)
 
   1. Tools 
      * [Percona-toolkit-Installation](#percona-toolkit-installation)
@@ -88,118 +95,45 @@
      * [Example sys-schema and Reference](#example-sys-schema-and-reference)
      * [Change schema online (pt-online-schema-change)](https://www.percona.com/doc/percona-toolkit/3.0/pt-online-schema-change.html)
      * [Optimizer-Hints](#optimizer-hints)
+    
+  1. Upgrading / Patching 
+     * [Upgrade vom 10.3 (Distri Ubuntu 20.04) -> 10.4 (MariaDB-Foundation)](#upgrade-vom-103-distri-ubuntu-2004-->-104-mariadb-foundation)
+     
+  1. Security and User Rights 
+     * [Create User/Grant/Revoke - Management of users](#create-usergrantrevoke---management-of-users)
+     * [Getting rid of specific user after user permissions changes](#getting-rid-of-specific-user-after-user-permissions-changes)
+     * [Disable unix_socket authentication for user](#disable-unix_socket-authentication-for-user)
+     * [Debug and Setup External Connection](#debug-and-setup-external-connection)
+     * [Get Rights of user](#get-rights-of-user)
+     * [Auth with unix_socket](#auth-with-unix_socket)
+     * [User- and Permission-concepts (best-practice)](#user--and-permission-concepts-best-practice)
+     * [Setup external access](#setup-external-access)
+     
+  1. Backup and Restore (Point-In-Time aka PIT) 
+     * [General](#general)
+     * [Backup and Create new database based on backup](#backup-and-create-new-database-based-on-backup)
+     * [PIT - Point-in-time-Recovery Exercise](#pit---point-in-time-recovery-exercise)
+     * [Backup / Recover to Network Destination](#backup--recover-to-network-destination)
+     * [Flashback](#flashback)
+     * [Use xtrabackup for MariaDB 5.5](#use-xtrabackup-for-mariadb-55)
       
   1. Documentation / Literature 
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
      * [MariaDB Galera Cluster](http://schulung.t3isp.de/documents/pdfs/mariadb/mariadb-galera-cluster.pdf)
      * [MySQL Galera Cluster](https://galeracluster.com/downloads/)
+     * [Alternative password authentication (salting)](#alternative-password-authentication-salting)
+     * [User statistics](https://mariadb.com/kb/en/user-statistics/)
    
    
 
 <div class="page-break"></div>
 
-## Architectur of MariaDB 
+## Architecture of MariaDB 
 
 ### Architecture Server
 
 
 ![MariaDB Server Architecture](/images/mysql-architecture.jpg)
-
-### Query Cache Usage and Performance
-
-
-### Performance query cache 
-
-  * Always try to optimize innodb with disabled query cache first (innodb_buffer_pool) 
-  * If you use query_cache system can only use on CPU-Core. !! 
-  
-### How to enable query cache 
-
-```
-## have_query_cache means compiled in mysql 
-## query_cache_type off means not enable by config
--- query cache is diabled 
-mysql> show variables like '%query_cache%';
-+------------------------------+---------+
-| Variable_name                | Value   |
-+------------------------------+---------+
-| have_query_cache             | YES     |
-| query_cache_limit            | 1048576 |
-| query_cache_min_res_unit     | 4096    |
-| query_cache_size             | 1048576 |
-| query_cache_type             | OFF     |
-| query_cache_wlock_invalidate | OFF     |
-+------------------------------+---------+
-6 rows in set (0.01 sec)
-
-root@trn01:/etc/mysql/mysql.conf.d# tail mysqld.cnf
-[mysqld]
-pid-file        = /var/run/mysqld/mysqld.pid
-socket          = /var/run/mysqld/mysqld.sock
-datadir         = /var/lib/mysql
-log-error       = /var/log/mysql/error.log
-## By default we only accept connections from localhost
-bind-address    = 0.0.0.0
-## Disabling symbolic-links is recommended to prevent assorted security risks
-symbolic-links=0
-query-cache-type=1
-
-systemctl restart mysql 
-
-mysql> show variables like '%query_cache%';
-+------------------------------+---------+
-| Variable_name                | Value   |
-+------------------------------+---------+
-| have_query_cache             | YES     |
-| query_cache_limit            | 1048576 |
-| query_cache_min_res_unit     | 4096    |
-| query_cache_size             | 1048576 |
-| query_cache_type             | ON      |
-| query_cache_wlock_invalidate | OFF     |
-+------------------------------+---------+
-6 rows in set (0.01 sec)
-
-
-mysql> show status like '%Qcache%';
-+-------------------------+---------+
-| Variable_name           | Value   |
-+-------------------------+---------+
-| Qcache_free_blocks      | 1       |
-| Qcache_free_memory      | 1031832 |
-| Qcache_hits             | 0       |
-| Qcache_inserts          | 0       |
-| Qcache_lowmem_prunes    | 0       |
-| Qcache_not_cached       | 0       |
-| Qcache_queries_in_cache | 0       |
-| Qcache_total_blocks     | 1       |
-+-------------------------+---------+
-8 rows in set (0.00 sec)
-
-## status in session zurücksetzen. 
-mysql> flush status;
-Query OK, 0 rows affected (0.00 sec)
-
-```
-
-### Performance bottleneck - mutex 
-
-https://mariadb.com/de/resources/blog/flexible-mariadb-server-query-cache/
-
-```
-
-```
-
-### Something planned ?
-
-  * Nope ;o( Demand is new  
-  * You might be able to use Demand together with maxscale 
-  * Refer to: 
-  https://mariadb.com/de/resources/blog/flexible-mariadb-server-query-cache/
-  
-  
-  ```
-  A mutual exclusion object (mutex) is a programming object that allows multiple program threads to share a resource (such as a folder) but not simultaneously. Mutex is set to unlock when the data is no longer needed or when a routine is finished. Mutex creates a bottleneck effect. The blocking means only one query can look at the Query Cache at a time and other queries must wait. A query that must wait to look in the cache only to find it isn’t in the cache will be slowed instead of being accelerated.
-  ```
 
 ### Storage Engines
 
@@ -378,8 +312,8 @@ journalctl -u mariadb.service
 ## e.g. with mariadb (find through internet research)
 less /var/log/mysql/error.log 
 
-## Nicht fündig -> Schritt 5
-## Allgemeines Log
+## Didn't find something -> step 5 
+## General Log 
 ## Debian/Ubuntu 
 /var/log/syslog
 ## REdhat/Centos 
@@ -390,7 +324,7 @@ less /var/log/mysql/error.log
 
 ```
 cd /var/log/mysql 
-## -i = case insensitive // egal ob gross- oder kleingeschrieben
+## -i = case insensitive // no matter if capital or lower letters 
 cat error.log | grep -i error
 ```
 
@@ -453,38 +387,9 @@ MariaDB [(none)]> select @@global.long_query_time
 
 ```
 
-### Handling general_log
-
-
-### Activate during runtime 
-
 ```
-## Hint hostname:  myserver 
-mysql>set global general_log = 1 
-
-ls -la /var/lib/mysql/myserver.log 
-
-```
-### Implications 
-
-  * By default 
-  * Will massively increase in size, because all queries are documented 
-
-### Truncate while running 
-
-```
-## will be empty that 
-cd /var/lib/mysql 
-> myserver.log 
-
-## and keeps on writing in there
-
-## Attention
-## Delete logfile does not work, needs restart 
-## or 
-## set global general_log = 0; set global general_log = 1 # after deletion 
-
-
+## Within server 
+SET GLOBAL general_log = 1;
 ```
 
 ### Show structure of database
@@ -569,24 +474,508 @@ mysql < sakila-data.sql
 
 ```
 
-### Setup training data "contributions"
+## Security and User Rights 
+
+### Create User/Grant/Revoke - Management of users
 
 
-### Walkthrough 
+### Create user 
 
-  * Complete process takes about 10 minutes 
-
-```bash 
-cd /usr/src 
-apt update; apt install -y git 
-git clone https://github.com/jmetzger/dedupe-examples.git
-cd dedupe-examples 
-cd mysql_example 
-## Eventually you need to enter (in mysql_example/mysql.cnf)  
-## Only necessary if you cannot connect to db by entering "mysql" 
-## password=<your_root_pw> 
-./setup.sh 
 ```
+create user training@localhost identified by 'yourpassword';
+```
+
+### Drop user (=delete user) 
+
+```
+drop user training@localhost 
+```
+
+### Change User (e.g. change authentication) 
+
+```
+## change pass
+alter user training@localhost identified by 'newpassword';
+```
+
+### Set global or db rights for a user 
+
+```
+grant all on *.* to training@localhost
+## only a specific db 
+grant all on mydb.* to training@localhost 
+```
+
+### Revoke global or revoke right from a user 
+
+```
+revoke select on *.* from training@localhost 
+## only from a specific db 
+revoke select on training.* from training@localhost 
+```
+
+### Useful command to find out users:
+
+```
+select user,host from mysql.user;
+```
+
+
+### Refs:
+
+  * https://mariadb.com/kb/en/grant/#the-grant-option-privilege
+  * https://mariadb.com/kb/en/revoke/
+
+### Getting rid of specific user after user permissions changes
+
+
+### Why ? 
+
+  * You might have changed the grants, but they only reflect after a reconnect
+ 
+### Howto 
+
+```
+## step 1: git thread_id id of user 
+MariaDB [information_schema]> select id,user,host,command from processli
+st where user='training';
++----+----------+-------------------+---------+
+| id | user     | host              | command |
++----+----------+-------------------+---------+
+| 75 | training | jochen-wt6y:42026 | Sleep   |
++----+----------+-------------------+---------+
+1 row in set (0.001 sec)
+
+## step 2: kill thread_id = connection_id  = id
+kill 75
+
+```
+
+### Secure with SSL server/client
+
+
+### Variant 1: Setup 1-way ssl encryption 
+
+#### Create CA and Server-Key 
+
+```
+
+## On Server - create ca and certificates 
+sudo mkdir -p /etc/my.cnf.d/ssl
+sudo cd /etc/my.cnf.d/ssl
+
+## create ca.  
+sudo openssl genrsa 4096 > ca-key.pem
+
+## create ca-certificate 
+## Common Name: MariaDB CA 
+sudo openssl req -new -x509 -nodes -days 365000 -key ca-key.pem -out ca-cert.pem
+
+## create server-cert 
+## Common Name: server1.training.local 
+## Password: --- leave empty ----
+sudo openssl req -newkey rsa:2048 -days 365000 -nodes -keyout server-key.pem -out server-req.pem
+
+## Next process the rsa - key 
+sudo openssl rsa -in server-key.pem -out server-key.pem
+
+## Now sign the key 
+sudo openssl x509 -req -in server-req.pem -days 365000 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out server-cert.pem
+
+```
+
+#### Verify certificates 
+
+```
+openssl verify -CAfile ca-cert.pem server-cert.pem 
+
+
+```
+
+#### Configure Server 
+```
+## create file 
+## /etc/my.cnf.d/z_ssl.cnf 
+[mysqld]
+ssl-ca=/etc/my.cnf.d/ssl/ca-cert.pem
+ssl-cert=/etc/my.cnf.d/ssl/server-cert.pem
+ssl-key=/etc/my.cnf.d/ssl/server-key.pem
+### Set up TLS version here. For example TLS version 1.2 and 1.3 ##
+## Starts from mariadb 10.4.6 not possible before. !!!! 
+tls_version = TLSv1.2,TLSv1.3
+
+## Set ownership 
+chown -vR mysql:mysql /etc/my.cnf.d/ssl/
+
+```
+
+#### Restart and check for errors 
+```
+systemctl restart mariadb
+journalctl -u mariadb 
+
+```
+
+#### Test connection on client 
+
+```
+## only if we use option --ssl we will connect with ssl 
+mysql --ssl -uxyz -p -h <ip-of-server>
+mysql>status
+SSL:                    Cipher in use is TLS_AES_256_GCM_SHA384
+
+```
+
+#### Force to use ssl 
+
+
+```
+## on server 
+## now client can only connect, when using ssl 
+mysql> grant USAGE on *.* to remote@10.10.9.144 require ssl;
+```
+
+### Variant 2: 1-way ssl-encryption but checking server certificate 
+
+#### Prerequisites 
+
+```
+server1: 192.168.56.103 
+client1: 192.168.56.104
+```
+
+#### Copy ca-cert to client 
+
+```
+## on server1 
+cd /etc/my.cnf.d/ssl
+scp ca-cert.pem kurs@192.168.56.104:/tmp 
+
+## on clien1 
+cd /etc/my.cnf.d 
+mkdir ssl 
+cd ssl
+mv /tmp/ca-cert.pem . 
+```
+
+#### Configure client1 - client -config  
+
+```
+sudo vi /etc/my.cnf.d/mysql-clients.cnf
+
+Append/edit in [mysql] section:
+
+### MySQL Client Configuration ##
+ssl-ca=/etc/my.cnf.d/ssl/ca-cert.pem
+
+###  Force TLS version for client too
+##tls_version = TLSv1.2,TLSv1.3
+#### This option is disabled by default ###
+#### ssl-verify-server-cert ###
+
+## only works if you have no self-signed certificate
+ssl-verify-server-cert
+ssl
+
+## domain-name in hosts setzen 
+## because in dns
+vi /etc/hosts 
+192.168.56.103 server1.training.local 
+
+## now you to connect with hostname
+## otherwice no check against certificate can be done 
+mysql -uext -p -h server1.training.local 
+
+## if it does not work, you get 
+ERROR 2026 (HY000): SSL connection error: Validation of SSL server certificate failed
+
+```
+
+### Variant 3: 2-way - Security (Encryption) - validated on server and client 
+
+#### Client - Create certificate on server
+  * we are using the same ca as on the server
+
+```
+## on server1
+cd /etc/my.cnf.d/ssl
+## Bitte Common-Name: MariaDB Client 
+openssl req -newkey rsa:2048 -days 365 -nodes -keyout client-key.pem -out client-req.pem
+
+## process RSA - Key 
+## Eventually also works without - what does it do ? 
+## openssl rsa -in client-key.pem -out client-key.pem
+
+## sign certficate with CA 
+openssl x509 -req -in client-req.pem -days 365 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out client-cert.pem
+
+```
+
+#### Client - Zertifikate validieren 
+
+```
+openssl verify -CAfile ca-cert.pem client-cert.pem
+```
+
+#### Zertifikate für Client zusammenpacken
+
+```
+mkdir cl-certs; cp -a client* cl-certs; cp -a ca-cert.pem cl-certs ; tar cvfz cl-certs.tar.gz cl-certs 
+```
+
+
+#### Zertifikate auf Client transferieren 
+
+```
+scp cl-certs.tar.gz kurs@192.168.56.104:/tmp 
+```
+
+
+
+#### Zertifikate einrichten 
+
+```
+## on client1 
+## cleanup old config 
+rm /etc/my.cnf.d/ssl/ca-cert.pem 
+
+mv /tmp/cl-certs.tar.gz /etc/my.cnf.d/ssl
+cd /etc/my.cnf.d; tar xzvf cl-certs.tar.gz 
+
+vi mysql-clients.cnf 
+[mysql]
+ssl-ca=/etc/my.cnf.d/cl-certs/ca-cert.pem
+ssl-cert=/etc/my.cnf.d/cl-certs/client-cert.pem
+ssl-key=/etc/my.cnf.d/cl-certs/client-key.pem
+
+```
+
+#### Setup user to use client-certificate 
+
+```
+## Client certificate needs to be there
+ALTER USER 'alice'@'%' 
+   REQUIRE X509;
+   
+## Client certificate needs to be a specific one 
+ALTER USER 'alice'@'%' 
+   REQUIRE SUBJECT '/CN=alice/O=My Dom, Inc./C=US/ST=Oregon/L=Portland';
+   
+## Reference:
+https://mariadb.com/kb/en/securing-connections-for-client-and-server/
+```
+
+
+#### Test the certificate
+
+```
+## on server1 verify: X509 for user 
+select user,ssl_type from mysql.user where user='ext'
+
+## connect from client1 
+## Sollte die Verbindung nicht klappen stimmt auf dem 
+## Client etwas mit der Einrichtung nicht
+mysql -uext -p -h192.168.56.103
+mysql> status 
+
+```
+
+
+### Ref 
+
+  * https://www.cyberciti.biz/faq/how-to-setup-mariadb-ssl-and-secure-connections-from-clients/
+  
+
+
+### Secure with ssl for ubuntu/debian
+
+### Variant 1: Setup 1-way ssl encryption 
+
+#### Create CA and Server-Key 
+
+```
+
+## On Server - create ca and certificates 
+mkdir -p /etc/mysql/ssl; cd /etc/mysql/ssl
+
+## create ca.  
+openssl genrsa 4096 > ca-key.pem
+
+## create ca-certificate 
+## Common Name: MariaDB CA 
+openssl req -new -x509 -nodes -days 365000 -key ca-key.pem -out ca-cert.pem
+
+## create server-cert 
+## Common Name: server1.training.local 
+## Password: --- leave empty ----
+openssl req -newkey rsa:2048 -days 365000 -nodes -keyout server-key.pem -out server-req.pem
+
+## Next process the rsa - key 
+openssl rsa -in server-key.pem -out server-key.pem
+
+## Now sign the key 
+openssl x509 -req -in server-req.pem -days 365000 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out server-cert.pem
+
+```
+
+#### Verify certificates 
+
+```
+openssl verify -CAfile ca-cert.pem server-cert.pem 
+
+
+```
+
+#### Configure Server 
+```
+## create file 
+## /etc/mysql/mariadb.conf.d/z_ssl.cnf 
+[mysqld]
+ssl-ca=/etc/mysql/ssl/ca-cert.pem
+ssl-cert=/etc/mysql/ssl/server-cert.pem
+ssl-key=/etc/mysql/ssl/server-key.pem
+### Set up TLS version here. For example TLS version 1.2 and 1.3 ##
+## Starts from mariadb 10.4.6 not possible before. !!!! 
+tls_version = TLSv1.2,TLSv1.3
+```
+
+```
+## Set ownership 
+chown -vR mysql:mysql /etc/mysql/ssl/
+
+```
+
+#### Restart and check for errors 
+```
+systemctl restart mariadb
+journalctl -u mariadb 
+
+```
+
+#### Test connection on client 
+
+```
+## only if we use option --ssl we will connect with ssl 
+mysql --ssl -uxyz -p -h <ip-of-server>
+mysql>status
+SSL:                    Cipher in use is TLS_AES_256_GCM_SHA384
+
+```
+
+#### Force to use ssl 
+
+
+```
+## on server 
+## now client can only connect, when using ssl 
+mysql> grant USAGE on *.* to remote@10.10.9.144 require ssl;
+```
+
+
+### Table encryption
+
+
+### Step 1: Set up keys 
+```
+mkdir -p /etc/mysql/encryption;
+echo "1;"$(openssl rand -hex 32) > /etc/mysql/encryption/keyfile;
+
+openssl rand -hex 128 > /etc/mysql/encryption/keyfile.key;
+openssl enc -aes-256-cbc -md sha1 -pass file:/etc/mysql/encryption/keyfile.key -in /etc/mysql/encryption/keyfile -out /etc/mysql/encryption/keyfile.enc;
+
+rm -f /etc/mysql/encryption/keyfile;
+
+chown -R mysql:mysql /etc/mysql;
+chmod -R 500 /etc/mysql;
+
+
+```
+
+### Step 2: Verify data before encryption 
+
+```
+cd /var/lib/mysql/mysql
+## show content - is there readable content ?  
+strings gtid_slave_pos.ibd 
+
+```
+
+### Step 3: Setup configuration 
+
+```
+## vi /etc/my.cnf.d/z_encryption.cnf 
+
+[mysqld]
+plugin_load_add = file_key_management
+file_key_management_filename = /etc/mysql/encryption/keyfile.enc
+file_key_management_filekey = FILE:/etc/mysql/encryption/keyfile.key
+file_key_management_encryption_algorithm = AES_CTR
+
+innodb_encrypt_tables = FORCE
+innodb_encrypt_log = ON
+innodb_encrypt_temporary_tables = ON
+
+encrypt_tmp_disk_tables = ON
+encrypt_tmp_files = ON
+encrypt_binlog = ON
+aria_encrypt_tables = ON
+
+innodb_encryption_threads = 4
+innodb_encryption_rotation_iops = 2000
+
+
+```
+
+### Step 4: Restart server 
+
+```
+systemctl restart mariadb 
+```
+
+### Step 5: Verify encryption
+
+```
+cd /var/lib/mysql/mysql
+strings gtid_slave_pos;
+
+use information_schema;
+select * from innodb_tablespaces_encryption;
+SELECT CASE WHEN INSTR(NAME, '/') = 0 
+                   THEN '01-SYSTEM TABLESPACES'
+                   ELSE CONCAT('02-', SUBSTR(NAME, 1, INSTR(NAME, '/')-1)) END 
+                     AS "Schema Name",
+         SUM(CASE WHEN ENCRYPTION_SCHEME > 0 THEN 1 ELSE 0 END) "Tables Encrypted",
+         SUM(CASE WHEN ENCRYPTION_SCHEME = 0 THEN 1 ELSE 0 END) "Tables Not Encrypted"
+FROM information_schema.INNODB_TABLESPACES_ENCRYPTION
+GROUP BY CASE WHEN INSTR(NAME, '/') = 0 
+                   THEN '01-SYSTEM TABLESPACES'
+                   ELSE CONCAT('02-', SUBSTR(NAME, 1, INSTR(NAME, '/')-1)) END
+ORDER BY 1;
+```
+
+### Step 6: disable encryption runtime 
+
+```
+SET GLOBAL innodb_encrypt_tables = OFF;
+```
+
+```
+## Create a user that is not allowed to do so .... no set global 
+create user noroot@'localhost' identified by 'password';
+grant all on *.* to noroot@'localhost';
+revoke super on *.* from noroot@'localhost';
+```
+
+### working with mysqlbinlog and encryption 
+
+```
+mysqlbinlog -vv --read-from-remote-server --socket /run/mysqld/mysqld.sock mysqld-bin.000003 | less
+```
+
+
+### Ref:
+
+  * https://mariadb.com/de/resources/blog/mariadb-encryption-tde-using-mariadbs-file-key-management-encryption-plugin/
 
 ## InnoDB - Storage Engine 
 
@@ -609,6 +998,12 @@ show engine innodb status \G
 Free buffers       7905
 1 row in set (0.00 sec)
 ```
+
+```
+show status like '%free%';
+```
+
+
 
 ### Overview innodb server variables / settings 
 
@@ -692,22 +1087,14 @@ ERROR 1227 (42000): Access denied; you need (at least one of) the PROCESS privil
   * Backup Structure and Data seperately in multiple files - (For further work - e.g. for developers) 
   * Extract data from a specific table (because of problems that came up) 
 
-### Backup and Create new database based on backup
-
-
-```
-mysqldump sakila > sakila.sql 
-mysql -e 'create schema sakilanew'
-## or
-echo "create schema sakilanew" | mysql 
-
-mysql sakilanew < sakila.sql 
-
-
-```
-
 ### Backup with mysqldump - best practices
 
+
+### best practice minimal options 
+
+```
+mysqldump --all-databases --events --routines 
+```
 
 ### Useful options for PIT 
 
@@ -759,122 +1146,16 @@ Mi 20. Jan 09:41:55 CET 2021
  mysqldump --tab=/backups --master-data=2 contributions > /backups/master-data.tx
 ```
 
-### PIT - Point-in-time-Recovery Exercise
-
-
-### Problem coming up  
-
-```
-## Step 1 : Create full backup (assuming 24:00 o'clock) 
-mysqldump --all-databases --single-transaction --gtid --master-data=2 --routines --events --flush-logs --delete-master-logs > /usr/src/all-databases.sql;
-
-## Step 2: Working on data 
-mysql>use sakila; 
-mysql>insert into actor (first_name,last_name) values ('john','The Rock');
-mysql>insert into actor (first_name,last_name) values ('johanne','Johannson');
-
-## Optional: Step 3: Looking into binary to see this data 
-cd /var/lib/mysql 
-## last binlog 
-mysqlbinlog --no-defaults -vv mysqldbin.000005
-
-## Step 3: Some how a guy deletes data 
-mysql>use sakila; delete from actor where actor_id > 200;
-## now only 200 datasets 
-mysql>use sakila; select * from actor;
-
-```
-
-### Fixing the problem 
-
-```
-## find out the last binlog 
-## Simple take the last binlog 
-
-cd /var/lib/mysql
-## Find the position where the problem occured 
-## and create a recovery.sql - file (before apply full backup)
-mysqlbinlog --no-defaults -vv --stop-position=857 mysqld-bin.000005 > /usr/src/recover.sql
-
-## Step 1: Apply full backup 
-cd /usr/src/
-mysql < all-databases.sql 
-mysql> should be 200 or 202
-mysql> use sakila; select * from actor;
-mysql < recover.sql 
-mysql> -- now it should have all actors before deletion 
-mysql> use sakila; select * from actor;
-
-
-
-### Backup / Recover to Network Destination
-
-
-### Assumptions 
-
-```
-Server 1: 192.168.1.1
-Server 2: 192.168.1.2
-
-Create new db -> sakilaremote on server 1
-Backup data from sakila on server2 and send to server 1 
-
-```
-
-### Preparation (on server 1) 
-
-```
-## is server listening to the outside world
-lsof -i | grep mysql 
-
-## create user on server 
-mysql>create user ext@'%' identified by 'mysecretpass'
-mysql>grant all on *.* to ext@'%' 
-
-```
-
-### Testing (on server 1) 
-
-```
-mysql -uext -p -h 192.168.1.1 
-mysql>create schema sakilaremote 
-
-```
-
-### Executing (on server 2) 
-
-```
-mysqldump sakila | mysql -uext -p -h 192.168.1.1 sakilremote 
-```
-
-### Validating (on server 2) 
-
-```
-mysql -uext -p -h 192.168.1.1 
-mysql> use sakilaremote;
-mysql> show tables;
-
-```
-
-### Flashback
-
-
-  * Redoes insert/update/delete entries from binlog (binlog_format = 'ROW') 
-
-### Referenz:
-
-  * https://mariadb.com/kb/en/flashback/
-
 ### mariabackup
 
 
-### Installation (Ubuntu) 
+### Installation (Ubuntu/Debian) 
 
 ```
 apt install mariadb-backup 
 ```
 
-### Walkthrough 
+### Walkthrough (Backup) 
 
 ```
 ## user eintrag in /root/.my.cnf
@@ -888,8 +1169,11 @@ mariabackup --target-dir=/backups/20210120 --backup
 ## apply ib_logfile0 to tablespaces 
 ## after that ib_logfile0 ->  0 bytes 
 mariabackup --target-dir=/backups/20210120 --prepare 
+```
 
-### Recover 
+### Walkthrough (Recover) 
+
+```
 systemctl stop mariadb 
 mv /var/lib/mysql /var/lib/mysql.bkup 
 mariabackup --target-dir=/backups/20200120 --copy-back 
@@ -897,68 +1181,99 @@ chmod -R mysql:mysql /var/lib/mysql
 systemctl start mariadb 
 ```
 
+
+
 ### Ref. 
 https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/
 
-### Use xtrabackup for MariaDB 5.5
+### mariadbackup incremental
 
 
-### For mariadb 5.5 you can use xtrabackup instead of mariabackup 
-
-  * https://www.percona.com/doc/percona-xtrabackup/2.4/index.html
-  
-  
-
-## Upgrading / Patching 
-
-### Upgrade vom 10.3 (Distri Ubuntu 20.04) -> 10.4 (MariaDB-Foundation)
-
-
-### Prerequisites
+### Prerequisites: Setup user to be used in /root/.my.cnf 
 
 ```
-Ubuntu 20.04 
-MariaDB-Server from Distri
+## user eintrag in /root/.my.cnf
+[mariabackup]
+user=root 
+## pass is not needed here, because we have the user root with unix_socket - auth 
+```
 
-Install new 10.4 from Mariadb.org 
+### Backup-Phase 
+
+#### Day 1: First full backup (directory always needs to be empty) 
 
 ```
-### Prepare 
+## create some data 
+mysql -e "create schema if not exists backuptest" 
+mysql -e "create table if not exists data (id int, content varchar(50), primary key(id))" backuptest
+mysql -e "insert into data (id, content) values (1, 'day1 - dataset 1'),(2, 'day 1 - dataset 2')" backuptest
+mysql -e "select * from data" backuptest 
 
-  * Create backup of system (with mariabackup and/or mysqldump) 
+## create a folder for our backup 
+mkdir -p /var/mariadb 
 
-### Steps 
-
-```
-## 1. systemctl stop mariadb 
-## 2. apt remove mariadb-* 
-## 3. Doublecheck if components left: apt list --installed | grep mariadb
-## 4. Setup repo for mariadb
-## 5. apt update 
-## 6. apt install mariadb-server 
-
-## 7. systemctl enable --now mariadb # enable for next reboot and start immediately 
-## necessary for redhat 
-
-## 8. Doublecheck if mysql_upgrade was done
-cat /var/lib/mysql_upgrade_info 
+## Day 1: let us do the full backup 
+mariabackup --backup --target-dir=/var/mariadb/backup/ 
 
 ```
 
-### Important - Check mysql - configuration structure
+#### Day 2: Let us add some data and then do the incremental backup 
 
 ```
-## Which directories are loaded in 
-/etc/mysql/my.cnf 
-
-## Eventually move files to the right directory
-## As needed in migration from 10.3 (Distri) to 10.4 (mariadb.org) on Ubuntu 20.04
+mysql -e "insert into data (id, content) values (3, 'day2 - dataset 1'),(4, 'day 2 - dataset 2')" backuptest
+mysql -e "select * from data" backuptest 
+## now do the backup - folder inc1 needs to be empty !!! 
+mariabackup --backup \
+   --target-dir=/var/mariadb/inc1/ \
+   --incremental-basedir=/var/mariadb/backup/ 
 
 ```
 
-### Documentation 
+#### Day 3: Let us even add more more data and the do the incremental backup 
 
-  * https://mariadb.com/kb/en/upgrading-from-mariadb-103-to-mariadb-104/
+```
+mysql -e "insert into data (id, content) values (5, 'day3 - dataset 1'),(6, 'day 3 - dataset 2')" backuptest 
+mysql -e "select * from data" backuptest 
+
+## now we do the backup based on the last incremnental backup (so basedir is inc1) 
+
+mariabackup --backup \
+   --target-dir=/var/mariadb/inc2/ \
+   --incremental-basedir=/var/mariadb/inc1/
+```
+
+### Recovery Phase 
+
+#### Prepare 
+
+```
+## Step 1: Apply the changes from recovery/redo log of full backup 
+mariabackup --prepare --target-dir=/var/mariadb/backup
+
+## Step 2: Add the changes from inc1 
+mariabackup --prepare --target-dir=/var/mariadb/backup --incremental-dir=/var/mariadb/inc1
+
+## Step 3: Add the changes from inc2 
+mariabackup --prepare --target-dir=/var/mariadb/backup --incremental-dir=/var/mariadb/inc2
+```
+
+#### Copy-Back 
+
+```
+systemctl stop mariadb
+cd /var/lib/
+mv mysql mysql.mybkup 
+mariabackup --copy-back --target-dir=/var/mariadb/backup 
+chown -R mysql:mysql mysql 
+systemctl start mariadb 
+
+## Check if we have all data again 
+mysql -e "select * from data" backuptest 
+```
+
+### Ref:
+
+  * https://mariadb.com/kb/en/incremental-backup-and-restore-with-mariabackup/
 
 ## Documentation 
 
@@ -969,6 +1284,165 @@ cat /var/lib/mysql_upgrade_info
 ### MySQL - Performance - PDF
 
   * http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf
+
+### MySQL Performance Blog
+
+  * https://www.percona.com/blog/choosing-innodb_buffer_pool_size/
+
+## Architecture of MariaDB 
+
+### Query Cache Usage and Performance
+
+
+### Performance query cache 
+
+  * Always try to optimize innodb with disabled query cache first (innodb_buffer_pool) 
+  * If you use query_cache system can only use on CPU-Core. !! 
+  
+### How to enable query cache 
+
+```
+## have_query_cache means compiled in mysql 
+## query_cache_type off means not enable by config
+-- query cache is diabled 
+mysql> show variables like '%query_cache%';
++------------------------------+---------+
+| Variable_name                | Value   |
++------------------------------+---------+
+| have_query_cache             | YES     |
+| query_cache_limit            | 1048576 |
+| query_cache_min_res_unit     | 4096    |
+| query_cache_size             | 1048576 |
+| query_cache_type             | OFF     |
+| query_cache_wlock_invalidate | OFF     |
++------------------------------+---------+
+6 rows in set (0.01 sec)
+
+root@trn01:/etc/mysql/mysql.conf.d# tail mysqld.cnf
+[mysqld]
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+datadir         = /var/lib/mysql
+log-error       = /var/log/mysql/error.log
+## By default we only accept connections from localhost
+bind-address    = 0.0.0.0
+## Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+query-cache-type=1
+
+systemctl restart mysql 
+
+mysql> show variables like '%query_cache%';
++------------------------------+---------+
+| Variable_name                | Value   |
++------------------------------+---------+
+| have_query_cache             | YES     |
+| query_cache_limit            | 1048576 |
+| query_cache_min_res_unit     | 4096    |
+| query_cache_size             | 1048576 |
+| query_cache_type             | ON      |
+| query_cache_wlock_invalidate | OFF     |
++------------------------------+---------+
+6 rows in set (0.01 sec)
+
+
+mysql> show status like '%Qcache%';
++-------------------------+---------+
+| Variable_name           | Value   |
++-------------------------+---------+
+| Qcache_free_blocks      | 1       |
+| Qcache_free_memory      | 1031832 |
+| Qcache_hits             | 0       |
+| Qcache_inserts          | 0       |
+| Qcache_lowmem_prunes    | 0       |
+| Qcache_not_cached       | 0       |
+| Qcache_queries_in_cache | 0       |
+| Qcache_total_blocks     | 1       |
++-------------------------+---------+
+8 rows in set (0.00 sec)
+
+## status in session zurücksetzen. 
+mysql> flush status;
+Query OK, 0 rows affected (0.00 sec)
+
+```
+
+### Performance bottleneck - mutex 
+
+https://mariadb.com/de/resources/blog/flexible-mariadb-server-query-cache/
+
+```
+
+```
+
+### Something planned ?
+
+  * Nope ;o( Demand is new  
+  * You might be able to use Demand together with maxscale 
+  * Refer to: 
+  https://mariadb.com/de/resources/blog/flexible-mariadb-server-query-cache/
+  
+  
+  ```
+  A mutual exclusion object (mutex) is a programming object that allows multiple program threads to share a resource (such as a folder) but not simultaneously. Mutex is set to unlock when the data is no longer needed or when a routine is finished. Mutex creates a bottleneck effect. The blocking means only one query can look at the Query Cache at a time and other queries must wait. A query that must wait to look in the cache only to find it isn’t in the cache will be slowed instead of being accelerated.
+  ```
+
+## Administration
+
+### Handling general_log
+
+
+### Activate during runtime 
+
+```
+## Hint hostname:  myserver 
+mysql>set global general_log = 1 
+
+ls -la /var/lib/mysql/myserver.log 
+
+```
+### Implications 
+
+  * By default 
+  * Will massively increase in size, because all queries are documented 
+
+### Truncate while running 
+
+```
+## will be empty that 
+cd /var/lib/mysql 
+> myserver.log 
+
+## and keeps on writing in there
+
+## Attention
+## Delete logfile does not work, needs restart 
+## or 
+## set global general_log = 0; set global general_log = 1 # after deletion 
+
+
+```
+
+## Training Data
+
+### Setup training data "contributions"
+
+
+### Walkthrough 
+
+  * Complete process takes about 10 minutes 
+
+```bash 
+cd /usr/src 
+apt update; apt install -y git 
+git clone https://github.com/jmetzger/dedupe-examples.git
+cd dedupe-examples 
+cd mysql_example 
+## Eventually you need to enter (in mysql_example/mysql.cnf)  
+## Only necessary if you cannot connect to db by entering "mysql" 
+## password=<your_root_pw> 
+./setup.sh 
+```
 
 ## Optimal use of indexes
 
@@ -1915,6 +2389,287 @@ total_memory_allocated: 0 bytes
 
   * https://dev.mysql.com/doc/refman/5.7/en/optimizer-hints.html#optimizer-hints-syntax
 
+## Upgrading / Patching 
+
+### Upgrade vom 10.3 (Distri Ubuntu 20.04) -> 10.4 (MariaDB-Foundation)
+
+
+### Prerequisites
+
+```
+Ubuntu 20.04 
+MariaDB-Server from Distri
+
+Install new 10.4 from Mariadb.org 
+
+```
+### Prepare 
+
+  * Create backup of system (with mariabackup and/or mysqldump) 
+
+### Steps 
+
+```
+## 1. systemctl stop mariadb 
+## 2. apt remove mariadb-* 
+## 3. Doublecheck if components left: apt list --installed | grep mariadb
+## 4. Setup repo for mariadb
+## 5. apt update 
+## 6. apt install mariadb-server 
+
+## 7. systemctl enable --now mariadb # enable for next reboot and start immediately 
+## necessary for redhat 
+
+## 8. Doublecheck if mysql_upgrade was done
+cat /var/lib/mysql_upgrade_info 
+
+```
+
+### Important - Check mysql - configuration structure
+
+```
+## Which directories are loaded in 
+/etc/mysql/my.cnf 
+
+## Eventually move files to the right directory
+## As needed in migration from 10.3 (Distri) to 10.4 (mariadb.org) on Ubuntu 20.04
+
+```
+
+### Documentation 
+
+  * https://mariadb.com/kb/en/upgrading-from-mariadb-103-to-mariadb-104/
+
+## Security and User Rights 
+
+### Create User/Grant/Revoke - Management of users
+
+
+### Create user 
+
+```
+create user training@localhost identified by 'yourpassword';
+```
+
+### Drop user (=delete user) 
+
+```
+drop user training@localhost 
+```
+
+### Change User (e.g. change authentication) 
+
+```
+## change pass
+alter user training@localhost identified by 'newpassword';
+```
+
+### Set global or db rights for a user 
+
+```
+grant all on *.* to training@localhost
+## only a specific db 
+grant all on mydb.* to training@localhost 
+```
+
+### Revoke global or revoke right from a user 
+
+```
+revoke select on *.* from training@localhost 
+## only from a specific db 
+revoke select on training.* from training@localhost 
+```
+
+### Useful command to find out users:
+
+```
+select user,host from mysql.user;
+```
+
+
+### Refs:
+
+  * https://mariadb.com/kb/en/grant/#the-grant-option-privilege
+  * https://mariadb.com/kb/en/revoke/
+
+### Getting rid of specific user after user permissions changes
+
+
+### Why ? 
+
+  * You might have changed the grants, but they only reflect after a reconnect
+ 
+### Howto 
+
+```
+## step 1: git thread_id id of user 
+MariaDB [information_schema]> select id,user,host,command from processli
+st where user='training';
++----+----------+-------------------+---------+
+| id | user     | host              | command |
++----+----------+-------------------+---------+
+| 75 | training | jochen-wt6y:42026 | Sleep   |
++----+----------+-------------------+---------+
+1 row in set (0.001 sec)
+
+## step 2: kill thread_id = connection_id  = id
+kill 75
+
+```
+
+### Disable unix_socket authentication for user
+
+### Debug and Setup External Connection
+
+### Get Rights of user
+
+### Auth with unix_socket
+
+### User- and Permission-concepts (best-practice)
+
+### Setup external access
+
+## Backup and Restore (Point-In-Time aka PIT) 
+
+### General
+
+
+### Define your goal 
+
+  * Full backup of database-server (specific to PIT - point-in-time)  
+  * Simply backup some specific databases (with data) - ( e.g. 1 database out of 20) 
+  * Backup Structure and Data seperately in multiple files - (For further work - e.g. for developers) 
+  * Extract data from a specific table (because of problems that came up) 
+
+### Backup and Create new database based on backup
+
+
+```
+mysqldump sakila > sakila.sql 
+mysql -e 'create schema sakilanew'
+## or
+echo "create schema sakilanew" | mysql 
+
+mysql sakilanew < sakila.sql 
+
+
+```
+
+### PIT - Point-in-time-Recovery Exercise
+
+
+### Problem coming up  
+
+```
+## Step 1 : Create full backup (assuming 24:00 o'clock) 
+mysqldump --all-databases --single-transaction --gtid --master-data=2 --routines --events --flush-logs --delete-master-logs > /usr/src/all-databases.sql;
+
+## Step 2: Working on data 
+mysql>use sakila; 
+mysql>insert into actor (first_name,last_name) values ('john','The Rock');
+mysql>insert into actor (first_name,last_name) values ('johanne','Johannson');
+
+## Optional: Step 3: Looking into binary to see this data 
+cd /var/lib/mysql 
+## last binlog 
+mysqlbinlog --no-defaults -vv mysqldbin.000005
+
+## Step 3: Some how a guy deletes data 
+mysql>use sakila; delete from actor where actor_id > 200;
+## now only 200 datasets 
+mysql>use sakila; select * from actor;
+
+```
+
+### Fixing the problem 
+
+```
+## find out the last binlog 
+## Simple take the last binlog 
+
+cd /var/lib/mysql
+## Find the position where the problem occured 
+## and create a recovery.sql - file (before apply full backup)
+mysqlbinlog --no-defaults -vv --stop-position=857 mysqld-bin.000005 > /usr/src/recover.sql
+
+## Step 1: Apply full backup 
+cd /usr/src/
+mysql < all-databases.sql 
+mysql> should be 200 or 202
+mysql> use sakila; select * from actor;
+mysql < recover.sql 
+mysql> -- now it should have all actors before deletion 
+mysql> use sakila; select * from actor;
+
+```
+
+### Backup / Recover to Network Destination
+
+
+### Assumptions 
+
+```
+Server 1: 192.168.1.1
+Server 2: 192.168.1.2
+
+Create new db -> sakilaremote on server 1
+Backup data from sakila on server2 and send to server 1 
+
+```
+
+### Preparation (on server 1) 
+
+```
+## is server listening to the outside world
+lsof -i | grep mysql 
+
+## create user on server 
+mysql>create user ext@'%' identified by 'mysecretpass'
+mysql>grant all on *.* to ext@'%' 
+
+```
+
+### Testing (on server 1) 
+
+```
+mysql -uext -p -h 192.168.1.1 
+mysql>create schema sakilaremote 
+
+```
+
+### Executing (on server 2) 
+
+```
+mysqldump sakila | mysql -uext -p -h 192.168.1.1 sakilremote 
+```
+
+### Validating (on server 2) 
+
+```
+mysql -uext -p -h 192.168.1.1 
+mysql> use sakilaremote;
+mysql> show tables;
+
+```
+
+### Flashback
+
+
+  * Redoes insert/update/delete entries from binlog (binlog_format = 'ROW') 
+
+### Referenz:
+
+  * https://mariadb.com/kb/en/flashback/
+
+### Use xtrabackup for MariaDB 5.5
+
+
+### For mariadb 5.5 you can use xtrabackup instead of mariabackup 
+
+  * https://www.percona.com/doc/percona-xtrabackup/2.4/index.html
+  
+  
+
 ## Documentation / Literature 
 
 ### Effective MySQL
@@ -1928,3 +2683,9 @@ total_memory_allocated: 0 bytes
 ### MySQL Galera Cluster
 
   * https://galeracluster.com/downloads/
+
+### Alternative password authentication (salting)
+
+### User statistics
+
+  * https://mariadb.com/kb/en/user-statistics/
