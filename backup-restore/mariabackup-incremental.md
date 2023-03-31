@@ -24,7 +24,8 @@ mariabackup --backup --target-dir=/var/mariadb/backup/
 ### Day 2: Let us add some data and then do the incremental backup 
 
 ```
-mysql -e backuptest "insert into data (id, content) values (1, 'day2 - dataset 1'),(2, 'day 2 - dataset 2')
+mysql -e "insert into data (id, content) values (1, 'day2 - dataset 1'),(2, 'day 2 - dataset 2')" backuptest
+mysql -e "select * from data" backuptest 
 # now do the backup - folder inc1 needs to be empty !!! 
 mariabackup --backup \
    --target-dir=/var/mariadb/inc1/ \
@@ -35,7 +36,9 @@ mariabackup --backup \
 ### Day 3: Let us even add more more data and the do the incremental backup 
 
 ```
-mysql -e backuptest "insert into data (id, content) values (3, 'day3 - dataset 1'),(4, 'day 3 - dataset 2')
+mysql -e "insert into data (id, content) values (3, 'day3 - dataset 1'),(4, 'day 3 - dataset 2')" backuptest 
+
+
 # now we do the backup based on the last incremnental backup (so basedir is inc1) 
 
 mariabackup --backup \
