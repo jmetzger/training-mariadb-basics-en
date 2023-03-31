@@ -104,6 +104,16 @@
   1. Upgrading / Patching 
      * [Upgrade vom 10.3 (Distri Ubuntu 20.04) -> 10.4 (MariaDB-Foundation)](upgrade-10-3-10-4.md)
      
+  1. Security and User Rights 
+     * [Create User/Grant/Revoke - Management of users](grant-revoke.md)
+     * [Getting rid of specific user after user permissions changes](/security/get-rid-of-user.md)
+     * [Disable unix_socket authentication for user](/security/no-unix-sock-auth.md)
+     * [Debug and Setup External Connection](/security/debug-external-conn.md) 
+     * [Get Rights of user](/security/get-rights-for-user.md)  
+     * [Auth with unix_socket](create-user-unix-socket.md)
+     * [User- and Permission-concepts (best-practice)](/security/user-db-best-practice.md)
+     * [Setup external access](external-access.md)
+     
   1. Backup and Restore (Point-In-Time aka PIT) 
      * [General](backup-general.md)
      * [Backup and Create new database based on backup](backup-new-db.md)
