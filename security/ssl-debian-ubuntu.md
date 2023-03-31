@@ -1,5 +1,4 @@
-# ssl - mariadb - Centos/Redhat/Rocky - Distribution Version
-
+# ssl - mariadb - Ubuntu/Debian
 ## Variant 1: Setup 1-way ssl encryption 
 
 ### Create CA and Server-Key 
