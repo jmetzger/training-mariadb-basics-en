@@ -42,6 +42,8 @@
      * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
      * [MySQL Performance Blog](https://www.percona.com/blog/choosing-innodb_buffer_pool_size/)
+     * [Alternative password authentication (salting)](alternative-password-plugins-salting.md)
+     * [User statistics](https://mariadb.com/kb/en/user-statistics/)
 
 ## Add-Ons (Further read) / backlog 
 
@@ -121,7 +123,6 @@
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
      * [MariaDB Galera Cluster](http://schulung.t3isp.de/documents/pdfs/mariadb/mariadb-galera-cluster.pdf)
      * [MySQL Galera Cluster](https://galeracluster.com/downloads/)   
-     * [Alternative password authentication (salting)](alternative-password-plugins-salting.md)
-     * [User statistics](https://mariadb.com/kb/en/user-statistics/)
+
    
    
