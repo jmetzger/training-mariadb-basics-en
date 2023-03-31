@@ -196,6 +196,22 @@ ssl-key=/etc/my.cnf.d/cl-certs/client-key.pem
 
 ```
 
+### Setup user to use client-certificate 
+
+```
+# Client certificate needs to be there
+ALTER USER 'alice'@'%' 
+   REQUIRE X509;
+   
+# Client certificate needs to be a specific one 
+ALTER USER 'alice'@'%' 
+   REQUIRE SUBJECT '/CN=alice/O=My Dom, Inc./C=US/ST=Oregon/L=Portland';
+   
+# Reference:
+https://mariadb.com/kb/en/securing-connections-for-client-and-server/
+```
+
+
 ### Test the certificate
 
 ```
