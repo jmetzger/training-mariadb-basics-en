@@ -28,13 +28,13 @@ mysql>SET long_query_time = 0.000001
 SET GLOBAL log_queries_not_using_indexes=ON;
 ```
 
-## Geschwätzigkeit (Verbosity) erhöhen 
+## Increace verbosity (what system talks about)
 
 ```
 SET GLOBAL log_slow_verbosity='query_plan,explain'
 ```
 
-## Queries die keine Indizes verwenden 
+## Show queries that have no indexes being used.
 
 ```
 SET GLOBAL log_queries_not_using_indexes=ON;
