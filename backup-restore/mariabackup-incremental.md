@@ -2,7 +2,12 @@
 
 ## Prerequisites: Setup user to be used in /root/.my.cnf 
 
-  * see also: 
+```
+# user eintrag in /root/.my.cnf
+[mariabackup]
+user=root 
+# pass is not needed here, because we have the user root with unix_socket - auth 
+```
 
 ## Backup-Phase 
 
