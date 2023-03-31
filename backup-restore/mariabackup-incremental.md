@@ -43,7 +43,7 @@ mysql -e "select * from data" backuptest
 
 mariabackup --backup \
    --target-dir=/var/mariadb/inc2/ \
-   --incremental-basedir=/var/mariadb/inc1/ \
+   --incremental-basedir=/var/mariadb/inc1/
 ```
 
 ## Recovery Phase 
