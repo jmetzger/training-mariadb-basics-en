@@ -35,6 +35,13 @@ revoke select on *.* from training@localhost
 revoke select on training.* from training@localhost 
 ```
 
+## Useful command to find out users:
+
+```
+select user,host from mysql.user;
+```
+
+
 ## Refs:
 
   * https://mariadb.com/kb/en/grant/#the-grant-option-privilege
