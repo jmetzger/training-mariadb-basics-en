@@ -25,6 +25,7 @@
      * [Create User/Grant/Revoke - Management of users](grant-revoke.md)
      * [Getting rid of specific user after user permissions changes](/security/get-rid-of-user.md)
      * [Secure with SSL server/client](/security/ssl.md)
+     * [Secure with ssl for ubuntu/debian](/security/ssl-debian-ubuntu.md)
      * [Table encryption](table-encryption.md)
 
   1. InnoDB - Storage Engine 
