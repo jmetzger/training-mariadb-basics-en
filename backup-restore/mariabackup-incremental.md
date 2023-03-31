@@ -10,8 +10,8 @@
 
 ```
 # create some data 
-mysql -e "create schema backuptest" 
-mysql -e backuptest "create table data (id int, content varchar(50), primary key(id))"
+mysql -e "create schema if not exists backuptest" 
+mysql -e "create table data (id int, content varchar(50), primary key(id))" backuptest
 
 # create a folder for our backup 
 mkdir /var/mariadb 
