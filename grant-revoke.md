@@ -3,7 +3,7 @@
 ## Create user 
 
 ```
-create user training@localhost identified by 'deinpasswort';
+create user training@localhost identified by 'yourpassword';
 ```
 
 ## Drop user (=delete user) 
