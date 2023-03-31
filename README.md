@@ -119,5 +119,6 @@
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
      * [MariaDB Galera Cluster](http://schulung.t3isp.de/documents/pdfs/mariadb/mariadb-galera-cluster.pdf)
      * [MySQL Galera Cluster](https://galeracluster.com/downloads/)   
+     * [Alternative password authentication (salting)](alternative-password-plugins-salting.md)
    
    
