@@ -53,5 +53,14 @@ Mi 20. Jan 09:41:55 CET 2021
  chown mysql:mysql /backups
  mysqldump --tab=/backups contributions
  mysqldump --tab=/backups --master-data=2 contributions
- mysqldump --tab=/backups --master-data=2 contributions > /backups/master-data.tx
+ mysqldump --tab=/backups --master-data=2 contributions > /backups/master-data.txt 
+```
+
+## Dump sakila and import it as different database 
+
+```
+mysqldump sakila > /usr/src/sakila.sql
+mysql -e "create database sakilatest" 
+mysql sakilatest < /usr/src/sakila.sql 
+
 ```
