@@ -2,7 +2,7 @@
 
 ```
 # Connect to the server with mysql-client
-mysql>
+mysql
 ```
 ```
 create database training;
