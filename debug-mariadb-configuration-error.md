@@ -48,3 +48,9 @@ cd /var/log/mysql
 cat error.log | grep -i error
 ```
 
+## Find the wrong configuration option 
+
+```
+grep -nir nonsense /etc/mysql
+```
+
