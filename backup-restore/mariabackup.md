@@ -10,10 +10,16 @@ apt install mariadb-backup
 
 ```
 # user eintrag in /root/.my.cnf
+vi /root/.my.cnf
+```
+
+```
 [mariabackup]
 user=root 
 # pass is not needed here, because we have the user root with unix_socket - auth 
+```
 
+```
 mkdir /backups 
 # target-dir needs to be empty or not present 
 mariabackup --target-dir=/backups/20230511 --backup 
