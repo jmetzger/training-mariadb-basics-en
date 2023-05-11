@@ -1,4 +1,4 @@
-# Installation Ubuntu 20.04 
+# Installation Ubuntu 22.04 
 
 ## Install version from distribution (older version)
 
