@@ -3,7 +3,7 @@
 ## best practice minimal options 
 
 ```
-mysqldump --all-databases --events --routines 
+mysqldump --all-databases --events --routines > all-databases.sql 
 ```
 
 ## Useful options for PIT 
