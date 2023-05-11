@@ -43,6 +43,6 @@ mysql -e "create database bintest;"
 cd /var/lib/mysql
 mysqlbinlog -vv mysqld-bin.000001
 # in the special configuration from /etc/mysql/... gets in the way 
-mysqlbinlog --no-defaults -vv mysqld-bin.000001
+mysqlbinlog -vv mysqld-bin.000001
 ```
 
