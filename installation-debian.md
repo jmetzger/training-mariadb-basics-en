@@ -12,14 +12,18 @@ apt install mariadb-server
 
 ```
 https://downloads.mariadb.org/mariadb/repositories/
-# repo 
-sudo apt-get install software-properties-common
-sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
-sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirror.dogado.de/mariadb/repo/10.5/ubuntu focal main'
+```
 
+```
+# repo 
+sudo apt-get install apt-transport-https curl
+sudo curl -o /etc/apt/trusted.gpg.d/mariadb_release_signing_key.asc 'https://mariadb.org/mariadb_release_signing_key.asc'
+sudo sh -c "echo 'deb https://ftp.agdsn.de/pub/mirrors/mariadb/repo/10.6/debian bullseye main' >>/etc/apt/sources.list"
+```
+
+```
 apt update
 apt install mariadb-server 
-
 ```
 
 # Secure installation 
