@@ -24,6 +24,11 @@ log-bin
 systemctl restart mariadb 
 ```
 
+## Find out if it is activated 
+
+```
+mysql -e "show variables like 'log_bin%'"
+```
 
 
 ## How to view the binary-log 
