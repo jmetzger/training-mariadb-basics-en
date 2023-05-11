@@ -9,5 +9,7 @@ cd sakila-db/
 ls -la
 mysql < sakila-schema.sql 
 mysql < sakila-data.sql 
+# verify - database is present 
+mysql -e 'show databases;';
 
 ```
