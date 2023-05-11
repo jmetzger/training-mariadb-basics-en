@@ -19,6 +19,10 @@
      * [Binary Logging](binarylog.md)
      * [Kill Session/User](kill.md)
 
+  1. SQL Commands / Database / Table-Management 
+     * [Numeric Data Types](https://mariadb.com/kb/en/numeric-data-type-overview/)
+     * [Examples](sql/examples.md)
+
   1. Training Data 
      * [Setup sakila test database](sakila.md)
      
