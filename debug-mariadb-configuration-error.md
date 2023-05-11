@@ -1,5 +1,15 @@
 # Debug Service 
 
+## Producing 
+
+```
+# make an nonsense entry 
+/etc/mysql/mariadb.conf.d/50-server.cnf 
+[mysqld]
+nonsense 
+```
+
+
 ## Walkthrough 
 
 ```
