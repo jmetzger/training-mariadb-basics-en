@@ -50,7 +50,7 @@
      * [mariadbackup incremental](backup-restore/mariabackup-incremental.md)
 
   1. Migration 
-     * [Migrating MySQL from 8.0 to mariadb 10.11](/migration/migrate-from-mysql-8-mariadb-10-6.md) 
+     * [Migrating MySQL from 8.0 to mariadb 10.11](/migrate/migrate-from-mysql-8-mariadb-10-6.md) 
      
   1. Documentation 
      * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
