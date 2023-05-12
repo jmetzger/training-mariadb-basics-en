@@ -4,6 +4,10 @@
 
 ```
 create user training@localhost identified by 'yourpassword';
+# connect to mysql with this user:
+mysql -utraining -p 
+show grants;
+show databases;
 ```
 
 ## Drop user (=delete user) 
