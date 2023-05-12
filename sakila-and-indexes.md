@@ -40,3 +40,12 @@ explain select * from actor where last_name like '%N';
 
 
 ```
+
+## Creawting index for better performance 
+
+```
+create table actors as select * from actor;
+
+
+
+```
