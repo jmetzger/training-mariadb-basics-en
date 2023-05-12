@@ -28,7 +28,7 @@ show status like '%free%';
 # /etc/mysql/mariadb.conf.d/50-server.cnf 
 # 70-80% of memory on dedicated mysql
 [mysqld]
-innodb-buffer-pool-size=4.2G
+innodb-buffer-pool-size=4G
 ```
 
 ```
