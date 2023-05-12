@@ -30,7 +30,8 @@
      * [Example Joins](joins/example-join.md)
   
   1. Indexes 
-     * [Sakila, Indexes and Examples](sakila-and-indexes.md)
+     * [Sakila, Indexes and Examples](sakila-and-indexes.md) 
+     * [Percona-toolkit-Installation](/tools/percona-toolkit.md) 
 
   1. Training Data 
      * [Setup sakila test database](sakila.md)
@@ -96,8 +97,7 @@
      * [Reference: MaxScale-Proxy mit Monitoring](/replication/02-mariadbmon.md)
      * [Walkthrough:Automatic Failover Master Slave](/replication/03-automatic-failover-master-slave.md)
 
-  1. Tools 
-     * [Percona-toolkit-Installation](/tools/percona-toolkit.md) 
+  1. Tools
      * [pt-query-digist - analyze slow logs](/tools/pt-query-digest.md) 
      * [pt-online-schema-change howto](/tools/pt-online-schema-change.md)
 
