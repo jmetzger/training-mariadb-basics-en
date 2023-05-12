@@ -27,8 +27,11 @@ alter user training@localhost identified by 'newpassword';
 
 ```
 grant all on *.* to training@localhost
+```
+
+```
 # only a specific db 
-grant all on mydb.* to training@localhost 
+grant all on training.* to training@localhost 
 ```
 
 ## Revoke global or revoke right from a user 
