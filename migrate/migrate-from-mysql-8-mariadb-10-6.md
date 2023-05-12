@@ -1,6 +1,6 @@
 # Migrate from MySQL 8.x to MariaDB 10.6 
 
-## Normal route 
+## Normal route to take
 
 ```
 1. Create a dump of mysql-dataase 
