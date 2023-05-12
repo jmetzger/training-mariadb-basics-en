@@ -27,6 +27,7 @@
 
   1. JOINS 
      * [Overview over joins](joins/overview.md)
+     * [Example Joins](joins/example-join.md)
 
   1. Training Data 
      * [Setup sakila test database](sakila.md)
