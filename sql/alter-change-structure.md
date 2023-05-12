@@ -1,6 +1,6 @@
 # Change structure with alter 
 
-## Example 
+## Example - Step 1: Create structure first 
 
 ```
 -- done within the mysql interface 
@@ -15,7 +15,11 @@ CREATE TABLE courses (
 
 show tables;
 show create table courses;
+```
 
+## Example - Step 2: Modify structure 
 
-
+```
+ALTER TABLE courses ADD room VARCHAR(40), ADD price DECIMAL(5,2);
+ALTER TABLE courses MODIFY price DECIMAL(6,2);
 ```
