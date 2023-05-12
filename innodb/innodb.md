@@ -72,7 +72,7 @@ innodb_flush_neighbors=0
 
 ```
 # work only with ip's - better for performance 
-/etc/my.cnf 
+# vi /etc/mysql/mariadb.conf.d/50-server.cnf
 skip-name-resolve
 ```
 
