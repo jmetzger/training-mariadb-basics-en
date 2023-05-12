@@ -9,7 +9,7 @@ use training;
 
 CREATE TABLE courses (
   id smallint(6) NOT NULL,
-  name` varchar(80) DEFAULT NULL,
+  name varchar(80) DEFAULT NULL,
   PRIMARY KEY (id)
 );
 
