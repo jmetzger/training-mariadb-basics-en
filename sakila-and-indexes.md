@@ -44,7 +44,10 @@ explain select * from actor where last_name like '%N';
 ## Creawting index for better performance 
 
 ```
-create table actors as select * from actor;
+use sakila;
+create table actor2 as select * from actor;
+explain select * from actor2 where first_name like 'D%';
+
 
 
 
