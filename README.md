@@ -59,6 +59,9 @@
      * [Alternative password authentication (salting)](alternative-password-plugins-salting.md)
      * [User statistics](https://mariadb.com/kb/en/user-statistics/)
 
+  1. Misc 
+     * [When should I use MySQL, when MariaDB](mariadb-vs-mysql.md)
+
 ## Add-Ons (Further read) / backlog 
 
   1. Architecture of MariaDB 
