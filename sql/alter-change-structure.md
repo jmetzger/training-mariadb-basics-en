@@ -14,7 +14,7 @@ CREATE TABLE courses (
 );
 
 show tables;
-show create table courses 
+show create table courses;
 
 
 
