@@ -13,3 +13,9 @@ MariaDB [(none)]> show processlist;
 
 
 ```
+
+```
+# Alternative: Get information from processlist out of information_schema
+select * from information_schema.processlist where user='training';
+select * from information_schema.processlist
+```
