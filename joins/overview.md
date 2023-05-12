@@ -73,7 +73,7 @@ INNER JOIN actor ON film_actor.actor_id = actor.actor_id
 INNER JOIN film ON film_actor.film_id = film.film_id;
 ```
 
-## In Detail: Joining without JOIN - Keyword ==== 
+## In Detail: Joining without JOIN - Keyword
 
   * Explanation: Will have the same query execution plan as [INNER] JOIN
 ```
