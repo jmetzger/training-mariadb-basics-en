@@ -87,3 +87,30 @@ explain select first_name,last_name from actor where substring(last_name,1,4) = 
 # because it is statik and on the value side 
 explain select first_name,last_name from actor where last_name  like concat('A','%');
 ```
+
+## Drop old index and create index over 2 fields 
+
+  * Second query does not take index into account because index only works from left to right 
+
+
+```
+drop index idx_actor2_fist_name on actor2;
+create index idx_actor2_first_name_last_name on actor2 (first_name,last_name);
+
+MariaDB [sakila]> explain select * from actor2 where first_name like 'A%';
++------+-------------+--------+-------+---------------------------------+---------------------------------+---------+------+------+-----------------------+
+| id   | select_type | table  | type  | possible_keys                   | key                             | key_len | ref  | rows | Extra                 |
++------+-------------+--------+-------+---------------------------------+---------------------------------+---------+------+------+-----------------------+
+|    1 | SIMPLE      | actor2 | range | idx_actor2_first_name_last_name | idx_actor2_first_name_last_name | 182     | NULL | 13   | Using index condition |
++------+-------------+--------+-------+---------------------------------+---------------------------------+---------+------+------+-----------------------+
+1 row in set (0.001 sec)
+
+MariaDB [sakila]> explain select * from actor2 where last_name like 'A%';
++------+-------------+--------+------+---------------+------+---------+------+------+-------------+
+| id   | select_type | table  | type | possible_keys | key  | key_len | ref  | rows | Extra       |
++------+-------------+--------+------+---------------+------+---------+------+------+-------------+
+|    1 | SIMPLE      | actor2 | ALL  | NULL          | NULL | NULL    | NULL | 201  | Using where |
++------+-------------+--------+------+---------------+------+---------+------+------+-------------+
+1 row in set (0.001 sec)
+
+```
