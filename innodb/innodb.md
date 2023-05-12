@@ -25,10 +25,10 @@ show status like '%free%';
 ## Change innodb_buffer_pool 
 
 ```
-# /etc/mysql/mysql.conf.d/mysqld.cnf 
+# /etc/mysql/mariadb.conf.d/50-server.cnf 
 # 70-80% of memory on dedicated mysql
 [mysqld]
-innodb-buffer-pool-size=6G
+innodb-buffer-pool-size=4.2G
 ```
 
 ```
