@@ -23,7 +23,7 @@ mv /var/lib/mysql /var/lib/mysql.bkup
 mysql < all-databases.sql 
 ```
 
-## Problems you might 
+## Problems you might run into ? 
 
 ```
 * MySQL has a new password authentication mechanism 
@@ -38,6 +38,5 @@ mysql < all-databases.sql
 * Are you using virtual columns ? 
 ```
 
-```
 
 
