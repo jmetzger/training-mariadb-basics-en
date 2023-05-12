@@ -31,6 +31,7 @@
   
   1. Indexes 
      * [Sakila, Indexes and Examples](sakila-and-indexes.md) 
+     * [Activation - Slow Query Log](slow-query-log.md)
      * [Percona-toolkit-Installation](/tools/percona-toolkit.md) 
 
   1. Training Data 
