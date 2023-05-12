@@ -23,6 +23,7 @@
      * [Numeric Data Types](https://mariadb.com/kb/en/numeric-data-type-overview/)
      * [Examples](sql/examples.md)
      * [Changing Structure ALTER](sql/alter-change-structure.md)
+     * [INSERT/UPDATE/DELETE/TRUNCATE with example](sql/insert-update-delete.md)
 
   1. Training Data 
      * [Setup sakila test database](sakila.md)
