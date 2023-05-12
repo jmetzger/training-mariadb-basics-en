@@ -29,10 +29,14 @@ show status like '%free%';
 # 70-80% of memory on dedicated mysql
 [mysqld]
 innodb-buffer-pool-size=6G
+```
 
+```
 #
-systemctl restart mysql
+systemctl restart mariadb 
+```
 
+```
 # 
 mysql
 mysql>show variables like 'innodb%buffer%';
