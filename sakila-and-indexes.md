@@ -72,4 +72,18 @@ MariaDB [sakila]> explain select * from actor2 where first_name like 'D%';
 1 row in set (0.000 sec)
 ```
 
+## Never ever use functions on where -> field_name side !! 
 
+```
+# Problem of order
+# We need to get last_name data first, before we can make a substring
+# So we need get every single dataset 
+explain select first_name,last_name from actor where substring(last_name,1,4) = 'TORN'
+```
+
+## But this works 
+
+```
+# because it is statik and on the value side 
+explain select first_name,last_name from actor where last_name  like concat('A','%');
+```
