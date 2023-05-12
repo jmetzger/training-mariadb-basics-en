@@ -34,7 +34,7 @@ mariabackup --target-dir=/backups/20230511--prepare
 systemctl stop mariadb 
 mv /var/lib/mysql /var/lib/mysql.bkup 
 mariabackup --target-dir=/backups/20230511 --copy-back 
-chmod -R mysql:mysql /var/lib/mysql
+chown -R mysql:mysql /var/lib/mysql
 systemctl start mariadb 
 ```
 
