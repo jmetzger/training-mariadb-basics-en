@@ -8,6 +8,7 @@
 
   1. Installation / Configuration
      * [Installation (Ubuntu)](#installation-ubuntu)
+     * [Installation (Debian)](#installation-debian)
      * [start/stop/status and logs](#startstopstatus-and-logs)
      * [Is mariadb listening to the outside world (and how to fix)?](#is-mariadb-listening-to-the-outside-world-and-how-to-fix)
 
@@ -17,6 +18,21 @@
      * [Show structure of database](#show-structure-of-database)
      * [Binary Logging](#binary-logging)
      * [Kill Session/User](#kill-sessionuser)
+
+  1. SQL Commands / Database / Table-Management 
+     * [Numeric Data Types](https://mariadb.com/kb/en/numeric-data-type-overview/)
+     * [Examples](#examples)
+     * [Changing Structure ALTER](#changing-structure-alter)
+     * [INSERT/UPDATE/DELETE/TRUNCATE with example](#insertupdatedeletetruncate-with-example)
+
+  1. JOINS 
+     * [Overview over joins](#overview-over-joins)
+     * [Example Joins](#example-joins)
+  
+  1. Indexes 
+     * [Sakila, Indexes and Examples](#sakila-indexes-and-examples)
+     * [Activation - Slow Query Log](#activation---slow-query-log)
+     * [Percona-toolkit-Installation](#percona-toolkit-installation)
 
   1. Training Data 
      * [Setup sakila test database](#setup-sakila-test-database)
@@ -37,11 +53,19 @@
      * [Backup with mysqldump - best practices](#backup-with-mysqldump---best-practices)
      * [mariabackup](#mariabackup)
      * [mariadbackup incremental](#mariadbackup-incremental)
+
+  1. Migration 
+     * [Migrating MySQL from 8.0 to mariadb 10.11](#migrating-mysql-from-80-to-mariadb-1011)
      
   1. Documentation 
      * [Mariadb Server System Variables](https://mariadb.com/kb/en/server-system-variables/#long_query_time)
      * [MySQL - Performance - PDF](http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf)
      * [MySQL Performance Blog](https://www.percona.com/blog/choosing-innodb_buffer_pool_size/)
+     * [Alternative password authentication (salting)](#alternative-password-authentication-salting)
+     * [User statistics](https://mariadb.com/kb/en/user-statistics/)
+
+  1. Misc 
+     * [When should I use MySQL, when MariaDB](#when-should-i-use-mysql-when-mariadb)
 
 ## Add-Ons (Further read) / backlog 
 
@@ -74,8 +98,7 @@
      * [Reference: MaxScale-Proxy mit Monitoring](#reference-maxscale-proxy-mit-monitoring)
      * [Walkthrough:Automatic Failover Master Slave](#walkthroughautomatic-failover-master-slave)
 
-  1. Tools 
-     * [Percona-toolkit-Installation](#percona-toolkit-installation)
+  1. Tools
      * [pt-query-digist - analyze slow logs](#pt-query-digist---analyze-slow-logs)
      * [pt-online-schema-change howto](#pt-online-schema-change-howto)
 
@@ -121,8 +144,7 @@
      * [Effective MySQL](https://www.amazon.com/Effective-MySQL-Optimizing-Statements-Oracle/dp/0071782796)
      * [MariaDB Galera Cluster](http://schulung.t3isp.de/documents/pdfs/mariadb/mariadb-galera-cluster.pdf)
      * [MySQL Galera Cluster](https://galeracluster.com/downloads/)
-     * [Alternative password authentication (salting)](#alternative-password-authentication-salting)
-     * [User statistics](https://mariadb.com/kb/en/user-statistics/)
+
    
    
 
@@ -219,6 +241,43 @@ mariadb-secure-installation
 mysql_secure_installation 
 ```
 
+### Installation (Debian)
+
+
+### Install version from distribution (older version)
+
+```
+apt update
+apt install mariadb-server 
+
+```
+
+### Install Newest version from mariadb
+
+```
+https://downloads.mariadb.org/mariadb/repositories/
+```
+
+```
+## repo 
+sudo apt-get install apt-transport-https curl
+sudo curl -o /etc/apt/trusted.gpg.d/mariadb_release_signing_key.asc 'https://mariadb.org/mariadb_release_signing_key.asc'
+sudo sh -c "echo 'deb https://ftp.agdsn.de/pub/mirrors/mariadb/repo/10.6/debian bullseye main' >>/etc/apt/sources.list"
+```
+
+```
+apt update
+apt install mariadb-server 
+```
+
+## Secure installation 
+
+```
+mariadb-secure-installation 
+## OR: if not present before 10.4 
+mysql_secure_installation 
+```
+
 ### start/stop/status and logs
 
 
@@ -290,6 +349,16 @@ mysql -h 10.0.3.3
 ### Debug configuration error
 
 
+### Producing 
+
+```
+## make an nonsense entry 
+/etc/mysql/mariadb.conf.d/50-server.cnf 
+[mysqld]
+nonsense 
+```
+
+
 ### Walkthrough 
 
 ```
@@ -326,6 +395,12 @@ less /var/log/mysql/error.log
 cd /var/log/mysql 
 ## -i = case insensitive // no matter if capital or lower letters 
 cat error.log | grep -i error
+```
+
+### Find the wrong configuration option 
+
+```
+grep -nir nonsense /etc/mysql
 ```
 
 
@@ -409,34 +484,46 @@ mysql>show create table columns_priv;
 
   * It is disabled by default 
 
-## Why and when to use it ? 
+### Why and when to use it ? 
 
-  * Needed Galera Cluster (3 - Node - Cluster)  
+  * Not Needed Galera Cluster (3 - Node - Cluster), but bin_log_format = ROW   
   * Replication 
   * PIT (Point-In-Time) - Recovery (e.g. recover to start from 4 a.m. with full backup + binary log)
 
-## How to enable it ? 
+### How to enable it ? 
 
 ```
 ## Ubuntu 
 ## vi /etc/mysql/mariadb.conf.d/50-server.cnf 
 [mysqld]
 log-bin 
-
-## Restart server 
-systemctl restart mariadb 
-
 ```
 
-## How to view the binary-log 
+```
+## Restart server 
+systemctl restart mariadb 
+```
+
+### Find out if it is activated 
+
+```
+mysql -e "show variables like 'log_bin%'"
+```
+
+
+### How to view the binary-log 
+
+```
+## Adding a new database to see it in the binary logs 
+mysql -e "create database bintest;"
+```
+
 
 ```
 cd /var/lib/mysql
-
 mysqlbinlog -vv mysqld-bin.000001
 ## in the special configuration from /etc/mysql/... gets in the way 
-mysqlbinlog --no-defaults -vv mysqld-bin.000001
-
+mysqlbinlog -vv mysqld-bin.000001
 ```
 
 
@@ -457,6 +544,514 @@ MariaDB [(none)]> show processlist;
 
 ```
 
+```
+## Alternative: Get information from processlist out of information_schema
+select * from information_schema.processlist where user='training';
+select * from information_schema.processlist
+```
+
+## SQL Commands / Database / Table-Management 
+
+### Numeric Data Types
+
+  * https://mariadb.com/kb/en/numeric-data-type-overview/
+
+### Examples
+
+
+```
+## Connect to the server with mysql-client
+mysql
+```
+### Create database/table and inserting 
+
+```
+create database training;
+show databases;
+use training;
+create table courses (id smallint, name varchar(80), primary key(id));
+insert into courses (id,name) values (2,'MariaDB Administration');
+```
+
+### Administrative Commands 
+
+
+```
+use mysql;
+show tables;
+
+## Want to know more about a specific table
+show create table user;
+```
+
+
+### Changing Structure ALTER
+
+
+### Example - Step 1: Create structure first 
+
+```
+-- done within the mysql interface 
+create database training;
+use training;
+
+CREATE TABLE courses (
+  id smallint(6) NOT NULL,
+  name varchar(80) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+show tables;
+show create table courses;
+```
+
+### Example - Step 2: Modify structure 
+
+```
+ALTER TABLE courses ADD room VARCHAR(40), ADD price DECIMAL(5,2);
+ALTER TABLE courses MODIFY price DECIMAL(6,2);
+```
+
+### INSERT/UPDATE/DELETE/TRUNCATE with example
+
+
+### Prerequisites 
+
+[setup database and table](#changing-structure-alter)
+
+### INSERT 
+
+```
+-- only the case in mysql (in php using the appropriate php command to use specific database 
+use training; 
+```
+```
+INSERT INTO courses (id,name) values (1,'Galera Training');
+INSERT INTO courses (id,name,room,price) values (2,'MariaDB Administration','Bukarest',1000.50);
+-- better in terms of performance then select * FROM 
+-- showing all
+SELECT id,name FROM courses;
+SELECT id,name FROM courses WHERE id = 2;
+```
+
+### UPDATE 
+
+```
+UPDATE courses SET room='Berlin',price=800.7555 WHERE id = 1;
+```
+
+### DELETE 
+
+```
+DELETE FROM courses WHERE id = 2;
+```
+
+### TRUNCATE (will delete all data) 
+
+```
+TRUNCATE courses;
+```
+
+
+## JOINS 
+
+### Overview over joins
+
+
+### What is a JOIN for ? 
+
+ * combines rows from two or more tables
+ * based on a related column between them.
+
+### MySQL/MariaDB (Inner) Join 
+
+![Inner Join](/images/img_innerjoin.gif)
+
+### MySQL/MariaDB (Inner) Join (explained) 
+
+  * Inner Join and Join are the same
+  * Returns records that have matching values in both tables
+  * Inner Join, Cross Join and Join 
+    * are the same in MySQL
+ 
+### MySQL/MariaDB Left Join 
+
+![Image Left Join](/images/img_leftjoin.gif)
+
+### MySQL/MariaDB Left (outer) Join (explained) 
+
+  * Return all records from the left table
+  * _AND_ the matched records from the right table
+  * The result is NULL on the right side
+    * if there are no matched columns on the right 
+  * Left Join and Left Outer Join are the same
+
+### MySQL Right Join 
+
+![Image Right Join](/images/img_rightjoin.gif)
+
+### MySQL Right Join (explained)  
+
+  * Return all records from the right table
+    * _AND_ the matched records from the left table
+  * Right Join and Right Outer Join are the same
+
+### MySQL Straight Join 
+
+  * MySQL (inner) Join and Straight Join are the same
+  * **Difference:**
+    * The left column is always read first
+  * **Downside:**
+    * Bad optimization through mysql (query optimizer) 
+  * **Recommendation:**
+    * Avoid straight join if possible 
+    * use join instead 
+  
+### Type of Joins 
+
+  * [inner] join
+    * **inner join** and **join** are the same  
+  * left [outer] join 
+  * right [outer] join
+  * full [outer] join
+  * straight join < equals > join
+  * cross join = join (in mysql)
+  * natural join <= equals => join (but syntax is different)
+
+### In Detail: [INNER] JOIN 
+
+  * Return rows when there 
+    * is a match in both tables 
+  * Example 
+
+```
+SELECT actor.first_name, actor.last_name, film.title 
+FROM film_actor 
+INNER JOIN actor ON film_actor.actor_id = actor.actor_id 
+INNER JOIN film ON film_actor.film_id = film.film_id;
+```
+
+### In Detail: Joining without JOIN - Keyword
+
+  * Explanation: Will have the same query execution plan as [INNER] JOIN
+```
+SELECT actor.first_name, actor.last_name, film.title 
+FROM film_actor,actor,film 
+where film_actor.actor_id = actor.actor_id 
+and film_actor.film_id = film.film_id;
+```
+
+### In Detail: Left Join
+
+  * Return all rows from the left side
+    * even if there is not result on the right side
+  * Example 
+```
+SELECT 
+    c.customer_id, 
+    c.first_name, 
+    c.last_name,
+    a.actor_id,
+    a.first_name,
+    a.last_name
+FROM customer c
+LEFT JOIN actor a 
+ON c.last_name = a.last_name
+ORDER BY c.last_name;
+```
+
+### In Detail: Right Join 
+
+  * Return all rows from the right side
+    * even if there are no results on the left side
+  * Example 
+```
+SELECT 
+    c.customer_id, 
+    c.first_name, 
+    c.last_name,
+    a.actor_id,
+    a.first_name,
+    a.last_name
+FROM customer c
+RIGHT JOIN actor a 
+ON c.last_name = a.last_name
+ORDER BY a.last_name;
+```
+
+### In Detail: Having  
+
+  * Simple: WHERE for GroupBy (because where does not work here)
+  * Example 
+```
+SELECT last_name, COUNT(*) 
+FROM sakila.actor
+GROUP BY last_name
+HAVING count(last_name) > 2
+```
+ 
+### Internal (type of joins)  - NLJ 
+
+  * NLJ - (Nested Loop Join) 
+```
+for each row in t1 matching range {
+  for each row in t2 matching reference key {
+    for each row in t3 {
+      if row satisfies join conditions, send to client
+    }
+  }
+}
+```
+
+### Internal (type of joins) - BNL 
+ 
+  * BNL - (Block Nested Loop) 
+    * in explain: -> using join buffer 
+    * columns of interest to a join are stored in join buffer
+      * --> not whole rows.
+    * join_buffer_size system variable 
+      * -> determines the size of each join buffer used to process a query. 
+  * https://dev.mysql.com/doc/refman/5.7/en/nested-loop-joins.html
+
+### BNL - Who can I see, if it is used ? 
+
+  * Can be seen in explain 
+![Image Proof Nested Loop](/images/proof-nested-loop.png)
+
+```
+
+explain SELECT a.* FROM actor a  INNER JOIN actor b where a.actor_id > 20 and b.actor_id < 20
+
+```
+
+```
+When using a Block Nested-Loop Join, MySQL will, instead of automatically joining t2, 
+insert as many rows from t1 that it can into a join buffer 
+and then scan the appropriate range of t2 once, 
+matching each record in t2 to the join buffer. 
+From here, each matched row is then sent to the next join, 
+which, as previously discussed, may be another table, 
+t3, or, if t2 is the last table in the query, 
+the rows may be sent to the network.
+```
+
+### BNL's - Refs:
+
+  * https://www.burnison.ca/notes/fun-mysql-fact-of-the-day-block-nested-loop-joins
+
+### Example Joins
+
+
+### Structure of join 
+
+```
+## In General 
+## Do not execute, no real life example 
+SELECT field_from_tablea,field_from_tableb 
+FROM table_a a join table_b b 
+ON a.id = b.actor_id;
+```
+
+```
+## Step 1: get some data from table 1
+select c.last_name,c.address_id from customer c;
+
+## Step 2: Refer to the second table 
+SELECT c.last_name,c.address_id,a.address_id FROM customer c LEFT JOIN address a ON c.address_id=a.address_id;
+
+## Step 3: join over 3 tables,
+SELECT * from city;
+SELECT c.first_name,c.last_name,a.address,a.postal_code,ct.city FROM customer c JOIN address a ON c.address_id=a.address_id JOIN city ct ON a.city_id =ct.city_id;
+
+```
+
+
+
+## Indexes 
+
+### Sakila, Indexes and Examples
+
+
+```
+use sakila;
+select * from actor;
+
+show create table from actor;
+show indexes from actor; 
+
+```
+
+### Index is being used (System can only read indexes from left to right)
+
+```
+select * from actor where last_name like 'A%';
+explain select * from actor where last_name like 'A%';
+
++------+-------------+-------+-------+---------------------+---------------------+---------+------+------+-----------------------+
+| id   | select_type | table | type  | possible_keys       | key                 | key_len | ref  | rows | Extra                 |
++------+-------------+-------+-------+---------------------+---------------------+---------+------+------+-----------------------+
+|    1 | SIMPLE      | actor | range | idx_actor_last_name | idx_actor_last_name | 182     | NULL | 7    | Using index condition |
++------+-------------+-------+-------+---------------------+---------------------+---------+------+------+-----------------------+
+1 row in set (0.000 sec)
+
+```
+
+### Index cannot be used, because index would need to be read from right to left (and cannot) 
+
+```
+select * from actor where last_name like '%N';
+explain select * from actor where last_name like '%N';
+
+-- NO INDEX BEIG USED -> type -> ALL -> which means table scan (looking into every single line in the table) 
++------+-------------+-------+------+---------------+------+---------+------+------+-------------+
+| id   | select_type | table | type | possible_keys | key  | key_len | ref  | rows | Extra       |
++------+-------------+-------+------+---------------+------+---------+------+------+-------------+
+|    1 | SIMPLE      | actor | ALL  | NULL          | NULL | NULL    | NULL | 200  | Using where |
++------+-------------+-------+------+---------------+------+---------+------+------+-------------+
+1 row in set (0.000 sec)
+
+
+```
+
+### Creating index for better performance 
+
+```
+use sakila;
+create table actor2 as select * from actor;
+explain select * from actor2 where first_name like 'D%';
+
+create index idx_actor2_first_name on actor2 (first_name);
+show indexes from actor2;
+-- index is used 
+explain select * from actor2 where first_name like 'D%';
+```
+
+```
+-- output 
++--------+------------+-----------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+
+| Table  | Non_unique | Key_name              | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Ignored |
++--------+------------+-----------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+
+| actor2 |          1 | idx_actor2_first_name |            1 | first_name  | A         |         201 |     NULL | NULL   |      | BTREE      |         |               | NO      |
++--------+------------+-----------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+
+1 row in set (0.001 sec)
+
+MariaDB [sakila]> explain select * from actor2 where first_name like 'D%';
++------+-------------+--------+-------+-----------------------+-----------------------+---------+------+------+-----------------------+
+| id   | select_type | table  | type  | possible_keys         | key                   | key_len | ref  | rows | Extra                 |
++------+-------------+--------+-------+-----------------------+-----------------------+---------+------+------+-----------------------+
+|    1 | SIMPLE      | actor2 | range | idx_actor2_first_name | idx_actor2_first_name | 182     | NULL | 7    | Using index condition |
++------+-------------+--------+-------+-----------------------+-----------------------+---------+------+------+-----------------------+
+1 row in set (0.000 sec)
+```
+
+### Never ever use functions on where -> field_name side !! 
+
+```
+## Problem of order
+## We need to get last_name data first, before we can make a substring
+## So we need get every single dataset 
+explain select first_name,last_name from actor where substring(last_name,1,4) = 'TORN'
+```
+
+### But this works 
+
+```
+## because it is statik and on the value side 
+explain select first_name,last_name from actor where last_name  like concat('A','%');
+```
+
+### Drop old index and create index over 2 fields 
+
+  * Second query does not take index into account because index only works from left to right 
+
+
+```
+drop index idx_actor2_fist_name on actor2;
+create index idx_actor2_first_name_last_name on actor2 (first_name,last_name);
+
+MariaDB [sakila]> explain select * from actor2 where first_name like 'A%';
++------+-------------+--------+-------+---------------------------------+---------------------------------+---------+------+------+-----------------------+
+| id   | select_type | table  | type  | possible_keys                   | key                             | key_len | ref  | rows | Extra                 |
++------+-------------+--------+-------+---------------------------------+---------------------------------+---------+------+------+-----------------------+
+|    1 | SIMPLE      | actor2 | range | idx_actor2_first_name_last_name | idx_actor2_first_name_last_name | 182     | NULL | 13   | Using index condition |
++------+-------------+--------+-------+---------------------------------+---------------------------------+---------+------+------+-----------------------+
+1 row in set (0.001 sec)
+
+MariaDB [sakila]> explain select * from actor2 where last_name like 'A%';
++------+-------------+--------+------+---------------+------+---------+------+------+-------------+
+| id   | select_type | table  | type | possible_keys | key  | key_len | ref  | rows | Extra       |
++------+-------------+--------+------+---------------+------+---------+------+------+-------------+
+|    1 | SIMPLE      | actor2 | ALL  | NULL          | NULL | NULL    | NULL | 201  | Using where |
++------+-------------+--------+------+---------------+------+---------+------+------+-------------+
+1 row in set (0.001 sec)
+
+```
+
+### Activation - Slow Query Log
+
+
+### Walkthrough 
+
+```
+## Step 1
+## /etc/my.cnf.d/mariadb-server.cnf 
+## or: debian /etc/mysql/mariadb.conf.d/50-server.cnf 
+[mysqld]
+slow-query-log 
+
+## Step 2
+mysql>SET GLOBAL long_query_time = 0.000001 
+mysql>SET long_query_time = 0.000001
+
+## Step 3
+## run some time / data
+## and look into your slow-query-log 
+/var/lib/mysql/hostname-slow.log 
+
+```
+
+### Show queries that do not use indexes 
+
+```
+SET GLOBAL log_queries_not_using_indexes=ON;
+```
+
+### Increace verbosity (what system talks about)
+
+```
+SET GLOBAL log_slow_verbosity='query_plan,explain'
+```
+
+### Show queries that have no indexes being used.
+
+```
+SET GLOBAL log_queries_not_using_indexes=ON;
+```
+
+
+### Reference 
+
+  * https://mariadb.com/kb/en/slow-query-log-overview/
+
+
+### Percona-toolkit-Installation
+
+
+### Walkthrough 
+
+```
+## Howto 
+## https://www.percona.com/doc/percona-toolkit/LATEST/installation.html
+
+## Step 1: repo installieren mit deb -paket 
+wget https://repo.percona.com/apt/percona-release_latest.focal_all.deb;
+apt update; 
+apt install -y curl; 
+dpkg -i percona-release_latest.focal_all.deb;
+apt update;
+apt install -y percona-toolkit; 
+```
+
 ## Training Data 
 
 ### Setup sakila test database
@@ -471,6 +1066,8 @@ cd sakila-db/
 ls -la
 mysql < sakila-schema.sql 
 mysql < sakila-data.sql 
+## verify - database is present 
+mysql -e 'show databases;';
 
 ```
 
@@ -483,6 +1080,10 @@ mysql < sakila-data.sql
 
 ```
 create user training@localhost identified by 'yourpassword';
+## connect to mysql with this user:
+mysql -utraining -p 
+show grants;
+show databases;
 ```
 
 ### Drop user (=delete user) 
@@ -502,8 +1103,11 @@ alter user training@localhost identified by 'newpassword';
 
 ```
 grant all on *.* to training@localhost
+```
+
+```
 ## only a specific db 
-grant all on mydb.* to training@localhost 
+grant all on training.* to training@localhost 
 ```
 
 ### Revoke global or revoke right from a user 
@@ -896,6 +1500,10 @@ chmod -R 500 /etc/mysql;
 ```
 cd /var/lib/mysql/mysql
 ## show content - is there readable content ?  
+
+## if strings command not found 
+apt install -y binutils 
+
 strings gtid_slave_pos.ibd 
 
 ```
@@ -936,8 +1544,11 @@ systemctl restart mariadb
 
 ```
 cd /var/lib/mysql/mysql
-strings gtid_slave_pos;
+strings gtid_slave_pos.ibd
+mysql
+```
 
+```
 use information_schema;
 select * from innodb_tablespaces_encryption;
 SELECT CASE WHEN INSTR(NAME, '/') = 0 
@@ -1012,14 +1623,18 @@ show status like '%free%';
 ### Change innodb_buffer_pool 
 
 ```
-## /etc/mysql/mysql.conf.d/mysqld.cnf 
+## /etc/mysql/mariadb.conf.d/50-server.cnf 
 ## 70-80% of memory on dedicated mysql
 [mysqld]
-innodb-buffer-pool-size=6G
+innodb-buffer-pool-size=4G
+```
 
+```
 ##
-systemctl restart mysql
+systemctl restart mariadb 
+```
 
+```
 ## 
 mysql
 mysql>show variables like 'innodb%buffer%';
@@ -1055,7 +1670,7 @@ innodb_flush_neighbors=0
 
 ```
 ## work only with ip's - better for performance 
-/etc/my.cnf 
+## vi /etc/mysql/mariadb.conf.d/50-server.cnf
 skip-name-resolve
 ```
 
@@ -1084,8 +1699,8 @@ ERROR 1227 (42000): Access denied; you need (at least one of) the PROCESS privil
 
   * Full backup of database-server (specific to PIT - point-in-time)  
   * Simply backup some specific databases (with data) - ( e.g. 1 database out of 20) 
-  * Backup Structure and Data seperately in multiple files - (For further work - e.g. for developers) 
-  * Extract data from a specific table (because of problems that came up) 
+    * Backup Structure and Data seperately in multiple files - (For further work - e.g. for developers) 
+    * Extract data from a specific table (because of problems that came up) 
 
 ### Backup with mysqldump - best practices
 
@@ -1093,7 +1708,7 @@ ERROR 1227 (42000): Access denied; you need (at least one of) the PROCESS privil
 ### best practice minimal options 
 
 ```
-mysqldump --all-databases --events --routines 
+mysqldump --all-databases --events --routines > /usr/src/all-databases.sql 
 ```
 
 ### Useful options for PIT 
@@ -1143,7 +1758,16 @@ Mi 20. Jan 09:41:55 CET 2021
  chown mysql:mysql /backups
  mysqldump --tab=/backups contributions
  mysqldump --tab=/backups --master-data=2 contributions
- mysqldump --tab=/backups --master-data=2 contributions > /backups/master-data.tx
+ mysqldump --tab=/backups --master-data=2 contributions > /backups/master-data.txt 
+```
+
+### Dump sakila and import it as different database 
+
+```
+mysqldump sakila > /usr/src/sakila.sql
+mysql -e "create database sakilatest" 
+mysql sakilatest < /usr/src/sakila.sql 
+
 ```
 
 ### mariabackup
@@ -1159,16 +1783,22 @@ apt install mariadb-backup
 
 ```
 ## user eintrag in /root/.my.cnf
+vi /root/.my.cnf
+```
+
+```
 [mariabackup]
 user=root 
 ## pass is not needed here, because we have the user root with unix_socket - auth 
+```
 
+```
 mkdir /backups 
 ## target-dir needs to be empty or not present 
-mariabackup --target-dir=/backups/20210120 --backup 
+mariabackup --target-dir=/backups/20230511 --backup 
 ## apply ib_logfile0 to tablespaces 
 ## after that ib_logfile0 ->  0 bytes 
-mariabackup --target-dir=/backups/20210120 --prepare 
+mariabackup --target-dir=/backups/20230511 --prepare 
 ```
 
 ### Walkthrough (Recover) 
@@ -1176,8 +1806,8 @@ mariabackup --target-dir=/backups/20210120 --prepare
 ```
 systemctl stop mariadb 
 mv /var/lib/mysql /var/lib/mysql.bkup 
-mariabackup --target-dir=/backups/20200120 --copy-back 
-chmod -R mysql:mysql /var/lib/mysql
+mariabackup --target-dir=/backups/20230511 --copy-back 
+chown -R mysql:mysql /var/lib/mysql
 systemctl start mariadb 
 ```
 
@@ -1275,6 +1905,52 @@ mysql -e "select * from data" backuptest
 
   * https://mariadb.com/kb/en/incremental-backup-and-restore-with-mariabackup/
 
+## Migration 
+
+### Migrating MySQL from 8.0 to mariadb 10.11
+
+
+### Normal route to take
+
+```
+1. Create a dump of mysql-dataase 
+
+mysqldump --events --routings --all-databases > all-databases.sql 
+
+2. Stop MySQL 
+
+3. Uninstall mysql 
+
+4. mv away data - folder 
+mv /var/lib/mysql /var/lib/mysql.bkup 
+
+5. Install mariadb 
+
+6. Start mariadb (we should already be the case) 
+
+7. Import data from 1. 
+
+mysql < all-databases.sql 
+```
+
+### Problems you might run into ? 
+
+```
+* MySQL has a new password authentication mechanism 
+// so probably you need to recreated all passwords 
+
+* JSON - datatype are completely different 
+
+* user database (double check if users are working) 
+
+* Are you using specific feature set from MySQL 8.x 
+
+* Are you using virtual columns ? 
+```
+
+
+
+
 ## Documentation 
 
 ### Mariadb Server System Variables
@@ -1288,6 +1964,60 @@ mysql -e "select * from data" backuptest
 ### MySQL Performance Blog
 
   * https://www.percona.com/blog/choosing-innodb_buffer_pool_size/
+
+### Alternative password authentication (salting)
+
+### User statistics
+
+  * https://mariadb.com/kb/en/user-statistics/
+
+## Misc 
+
+### When should I use MySQL, when MariaDB
+
+
+### What specfic feature set do you need from MariaDB or MySQL 
+
+### MariaDB 
+
+  * Should use it, when you want to use Galera Cluster 
+  * Why ? Because the patch for galera (wsrep-patch) is not in MySQL be default 
+    * https://galeracluster.com/downloads/#downloads (alternative for mysql) 
+  * But: Galera does not work on Windows
+  * Oracle Mode for the procedures (but not implemented) well.   
+
+### MySQL 
+
+  * Windows: Group Replication which mainly nearly the same as the cluster but available with Windows 
+  * If you want to use Online Physical you need to have subscription (mysqlbackup) 
+ 
+### Cluster (MySQL: group replication) ? MariaDB or MySQL 
+
+  * Always go for galera if possible 
+
+#### Why ? 
+
+  * Because galera has 14 years of experience under their belt (group replication was invented way later) 
+  * It is rock solid and they are spending time, to make easier and easier to setup on each iteration 
+  * And on windows you have a lot components, which makes things unclear (e.g. Group Replication, InnoDB Cluster on top) 
+
+### How to decide ?
+
+  * Look for the feature you specifically need (cutting edge) and if they are implement in mysql or mariadb 
+  * Important: If you are on system it is hard to move to the other as time goes by (as they divert over time
+    - especially, when using cutting edge features)
+  
+### Working with a software from a specific Vendor 
+
+  * What support do they have ? 
+ 
+### Flashback (MariaDB) 
+
+```
+DML - Insert / Update -- Revert the 20 minutes from your data, but only DML 
+```
+
+
 
 ## Architecture of MariaDB 
 
@@ -2122,25 +2852,7 @@ maxctrl show service ReadWrite-Split-Router
 https://mariadb.com/kb/en/mariadb-maxscale-25-automatic-failover-with-mariadb-monitor/
 
 
-## Tools 
-
-### Percona-toolkit-Installation
-
-
-### Walkthrough 
-
-```
-## Howto 
-## https://www.percona.com/doc/percona-toolkit/LATEST/installation.html
-
-## Step 1: repo installieren mit deb -paket 
-wget https://repo.percona.com/apt/percona-release_latest.focal_all.deb;
-apt update; 
-apt install -y curl; 
-dpkg -i percona-release_latest.focal_all.deb;
-apt update;
-apt install -y percona-toolkit; 
-```
+## Tools
 
 ### pt-query-digist - analyze slow logs
 
@@ -2449,6 +3161,10 @@ cat /var/lib/mysql_upgrade_info
 
 ```
 create user training@localhost identified by 'yourpassword';
+## connect to mysql with this user:
+mysql -utraining -p 
+show grants;
+show databases;
 ```
 
 ### Drop user (=delete user) 
@@ -2468,8 +3184,11 @@ alter user training@localhost identified by 'newpassword';
 
 ```
 grant all on *.* to training@localhost
+```
+
+```
 ## only a specific db 
-grant all on mydb.* to training@localhost 
+grant all on training.* to training@localhost 
 ```
 
 ### Revoke global or revoke right from a user 
@@ -2538,8 +3257,8 @@ kill 75
 
   * Full backup of database-server (specific to PIT - point-in-time)  
   * Simply backup some specific databases (with data) - ( e.g. 1 database out of 20) 
-  * Backup Structure and Data seperately in multiple files - (For further work - e.g. for developers) 
-  * Extract data from a specific table (because of problems that came up) 
+    * Backup Structure and Data seperately in multiple files - (For further work - e.g. for developers) 
+    * Extract data from a specific table (because of problems that came up) 
 
 ### Backup and Create new database based on backup
 
@@ -2683,9 +3402,3 @@ mysql> show tables;
 ### MySQL Galera Cluster
 
   * https://galeracluster.com/downloads/
-
-### Alternative password authentication (salting)
-
-### User statistics
-
-  * https://mariadb.com/kb/en/user-statistics/
